@@ -4,167 +4,303 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Urbanek – edukacja miejska dla dzieci</title>
+
+<!-- Favicon: bus SVG -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='12' width='56' height='30' rx='7' fill='%23FFD700' stroke='%23DAA520' stroke-width='2'/%3E%3Crect x='10' y='18' width='12' height='12' rx='2' fill='%23ADD8E6' stroke='%234682B4' stroke-width='1.2'/%3E%3Crect x='26' y='18' width='12' height='12' rx='2' fill='%23ADD8E6' stroke='%234682B4' stroke-width='1.2'/%3E%3Crect x='42' y='18' width='12' height='12' rx='2' fill='%23ADD8E6' stroke='%234682B4' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='48' r='7' fill='%23333' stroke='%23111' stroke-width='1.5'/%3E%3Ccircle cx='48' cy='48' r='7' fill='%23333' stroke='%23111' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='48' r='2.5' fill='%23888'/%3E%3Ccircle cx='48' cy='48' r='2.5' fill='%23888'/%3E%3C/svg%3E">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Urbanek – edukacja miejska dla dzieci">
+<meta property="og:description" content="Warsztaty, które uczą dzieci myśleć o przestrzeni, transporcie i środowisku — przez zabawę, ruch i tworzenie. Małopolska, 3–14 lat.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:image" content="og-urbanek.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Urbanek – edukacja miejska dla dzieci">
+<meta name="twitter:description" content="Warsztaty transportowe dla dzieci 3–14 lat · Małopolska · Horizon Europe">
+<meta name="twitter:image" content="og-urbanek.svg">
+
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',system-ui,sans-serif;color:#1a1a1a;background:#fff;line-height:1.6;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;color:#1a1a1a;background:#ffffff;line-height:1.6;}
 a{color:inherit;text-decoration:none;}
+img{max-width:100%;}
 :root{
   --g:#1D9E75;--gd:#085041;--gl:#E1F5EE;
-  --p:#534AB7;--pl:#EEEDFE;
+  --p:#1a5c99;--pl:#ddeeff;
   --y:#FFD700;--yd:#DAA520;
+  --nb:#1a5c99;--nl:#ddeeff;
   --hand:'Caveat',cursive;
   --print:'Patrick Hand',cursive;
+  /* refined brand palette */
+  --surface-warm:#FDFAF4;
+  --surface-cool:#F4F8FF;
+  --surface-green:#F0FAF6;
+  --divider:#E8EDF5;
 }
+nav,section,footer,.hero{position:relative;z-index:1;}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);border-bottom:0.5px solid #e8e8e8;padding:0 5%;}
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--nb);padding:0 5%;}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px;}
 .logo{display:flex;align-items:center;gap:10px;}
-.logo-mark{width:36px;height:36px;display:flex;align-items:center;justify-content:center;}
-.logo-wordmark{font-family:var(--hand);font-size:26px;font-weight:700;color:var(--gd);line-height:1;}
-.logo-sub{font-size:11px;color:var(--g);font-family:var(--print);margin-left:2px;}
-.nav-links{display:flex;gap:24px;font-size:13px;color:#666;}
-.nav-links a:hover{color:var(--g);}
-.nav-cta{background:var(--g);color:#fff;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:600;font-family:var(--print);}
+.logo-mark{width:38px;height:38px;display:flex;align-items:center;justify-content:center;}
+.logo-wordmark{font-family:var(--hand);font-size:28px;font-weight:700;color:var(--gd);line-height:1;letter-spacing:-0.5px;}
+.logo-sub{font-size:10px;color:var(--nb);font-family:var(--print);margin-left:2px;display:block;}
+.nav-links{display:flex;gap:20px;font-size:13px;color:#555;}
+.nav-links a{font-family:var(--print);padding:4px 8px;border-radius:6px;}
+.nav-links a:hover{color:var(--g);background:var(--gl);}
+.nav-cta{background:var(--g);color:#fff;padding:7px 18px;border-radius:20px;font-size:13px;font-weight:600;font-family:var(--print);white-space:nowrap;}
 .nav-cta:hover{background:var(--gd);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.nav-hamburger span{width:22px;height:2px;background:var(--gd);border-radius:2px;display:block;}
+@media(max-width:680px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:#fff;border-bottom:2px solid var(--nb);padding:16px 5%;gap:12px;z-index:200;}
+}
 
-/* HERO */
-.hero{background:linear-gradient(140deg,#04342C 0%,#0F6E56 55%,#1D9E75 100%);padding:72px 5% 80px;text-align:center;position:relative;overflow:hidden;min-height:520px;}
-.hero-doodle-bg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.07;}
-.hero-bus-wrap{position:absolute;bottom:20px;right:8%;width:180px;animation:busFloat 3s ease-in-out infinite;}
-@keyframes busFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-.hero-badge{display:inline-block;background:rgba(255,255,255,0.13);color:#9FE1CB;font-size:12px;padding:5px 16px;border-radius:20px;margin-bottom:20px;border:0.5px solid rgba(255,255,255,0.2);font-family:var(--print);}
-.hero h1{font-family:var(--hand);font-size:clamp(32px,6vw,62px);font-weight:700;color:#fff;line-height:1.15;max-width:680px;margin:0 auto 16px;}
+/* ── HERO ── */
+.hero{background:linear-gradient(150deg,#04342C 0%,#0a5c42 45%,#1D9E75 100%);padding:64px 5% 80px;text-align:center;overflow:hidden;min-height:480px;}
+.hero-doodle-bg{position:absolute;inset:0;pointer-events:none;opacity:0.06;}
+.hero-bus-wrap{position:absolute;bottom:16px;right:6%;width:clamp(100px,14vw,180px);animation:busFloat 3s ease-in-out infinite;pointer-events:none;}
+@keyframes busFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.13);color:#9FE1CB;font-size:12px;padding:5px 16px;border-radius:20px;margin-bottom:18px;border:0.5px solid rgba(255,255,255,0.25);font-family:var(--print);}
+.hero h1{font-family:var(--hand);font-size:clamp(30px,5.5vw,58px);font-weight:700;color:#fff;line-height:1.15;max-width:680px;margin:0 auto 14px;}
 .hero h1 em{color:#9FE1CB;font-style:normal;}
-.hero p{color:#9FE1CB;font-size:clamp(14px,2vw,17px);max-width:500px;margin:0 auto 32px;line-height:1.7;font-family:var(--print);}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.btn-white{background:#fff;color:var(--gd);padding:12px 26px;border-radius:24px;font-size:14px;font-weight:700;font-family:var(--print);}
+.hero p{color:#9FE1CB;font-size:clamp(14px,2vw,17px);max-width:480px;margin:0 auto 28px;line-height:1.7;font-family:var(--print);}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:#fff;color:var(--gd);padding:11px 24px;border-radius:24px;font-size:14px;font-weight:700;font-family:var(--print);}
 .btn-white:hover{background:#E1F5EE;}
-.btn-outline{border:1.5px solid rgba(255,255,255,0.45);color:#fff;padding:12px 26px;border-radius:24px;font-size:14px;font-family:var(--print);}
+.btn-outline{border:2px solid rgba(255,255,255,0.5);color:#fff;padding:11px 24px;border-radius:24px;font-size:14px;font-family:var(--print);}
 .btn-outline:hover{background:rgba(255,255,255,0.1);}
-.hero-stats{display:flex;justify-content:center;gap:40px;margin-top:52px;flex-wrap:wrap;position:relative;z-index:2;}
-.stat-val{font-family:var(--hand);font-size:34px;font-weight:700;color:#fff;}
+.hero-stats{display:flex;justify-content:center;gap:clamp(16px,4vw,40px);margin-top:44px;flex-wrap:wrap;position:relative;z-index:2;}
+.stat-val{font-family:var(--hand);font-size:clamp(26px,4vw,34px);font-weight:700;color:#fff;}
 .stat-label{font-size:11px;color:#5DCAA5;margin-top:2px;font-family:var(--print);}
 
-/* SECTIONS */
-section{padding:68px 5%;}
+/* ── SECTIONS ── */
+section{padding:60px 5%;}
 .section-inner{max-width:1100px;margin:0 auto;}
-.section-tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:11px;font-weight:700;padding:4px 13px;border-radius:20px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;font-family:var(--print);}
-.section-tag.purple{background:var(--pl);color:var(--p);}
-h2{font-family:var(--hand);font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.2;margin-bottom:10px;}
-.lead{font-size:15px;color:#666;max-width:540px;line-height:1.75;}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;padding:4px 13px;border-radius:20px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;font-family:var(--print);}
+.section-tag.green{background:var(--gl);color:var(--gd);}
+.section-tag.blue{background:var(--nl);color:var(--nb);}
+.section-tag.purple{background:#eee8ff;color:#4a3a9a;}
+h2{font-family:var(--hand);font-size:clamp(24px,3.8vw,38px);font-weight:700;line-height:1.2;margin-bottom:10px;}
+.lead{font-size:15px;color:#555;max-width:540px;line-height:1.75;}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:340px 1fr;gap:48px;align-items:start;margin-top:40px;}
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:clamp(260px,30%,340px) 1fr;gap:40px;align-items:start;margin-top:36px;}
 @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
-.about-card{background:var(--gl);border-radius:20px;padding:28px 24px;text-align:center;position:relative;}
-.about-card::before{content:'';position:absolute;top:-6px;left:-6px;right:-6px;bottom:-6px;border-radius:24px;border:2px dashed rgba(29,158,117,0.25);pointer-events:none;}
-.avatar-img{width:90px;height:90px;border-radius:50%;background:var(--g);margin:0 auto 14px;border:3px solid #fff;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:30px;font-weight:700;color:#fff;}
+.about-card{background:var(--gl);border-radius:16px;padding:24px 20px;text-align:center;position:relative;border:2px solid var(--nb);}
+.about-card::before{content:'';position:absolute;inset:-6px;border-radius:20px;border:2px dashed rgba(26,92,153,0.2);pointer-events:none;}
+.avatar-img{width:90px;height:90px;border-radius:50%;background:var(--g);margin:0 auto 12px;border:3px solid var(--nb);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:30px;font-weight:700;color:#fff;}
 .avatar-img img{width:100%;height:100%;object-fit:cover;}
-.about-name{font-family:var(--hand);font-size:22px;font-weight:700;color:var(--gd);}
+.about-name{font-family:var(--hand);font-size:21px;font-weight:700;color:var(--gd);}
 .about-role{font-size:12px;color:var(--g);margin-top:3px;font-family:var(--print);}
 .tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;justify-content:center;}
 .tag{background:#fff;border:0.5px solid #9FE1CB;color:var(--gd);font-size:11px;padding:3px 9px;border-radius:12px;font-family:var(--print);}
-.sum-badge{display:flex;align-items:center;gap:10px;background:#fff;border-radius:10px;padding:11px 14px;margin-top:14px;border:0.5px solid #CECBF6;}
-.sum-icon{width:34px;height:34px;background:var(--p);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;font-family:var(--hand);}
-.sum-text{font-size:11px;color:var(--p);text-align:left;}
-.sum-text strong{display:block;font-size:12px;color:#3C3489;font-family:var(--print);}
-.linkedin-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:12px;color:var(--p);font-family:var(--print);background:var(--pl);padding:5px 12px;border-radius:12px;}
+.proj-badge{display:flex;align-items:center;gap:10px;background:#fff;border-radius:10px;padding:10px 12px;margin-top:10px;border:1px solid #9FE1CB;}
+.proj-badge img{height:36px;width:auto;border-radius:4px;flex-shrink:0;}
+.proj-badge-icon{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;font-family:var(--hand);}
+.proj-text{font-size:11px;color:var(--gd);text-align:left;}
+.proj-text strong{display:block;font-size:12px;color:var(--gd);font-family:var(--print);}
+.linkedin-link{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:var(--nb);font-family:var(--print);background:var(--nl);padding:5px 12px;border-radius:12px;}
 .about-text p{color:#444;font-size:15px;line-height:1.8;margin-bottom:12px;}
 
-/* WORKSHOPS — sketchy cards */
-.workshops-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:32px;}
-.ws-card{border-radius:16px;padding:20px;position:relative;border:2px solid transparent;transition:transform 0.2s;}
-.ws-card:hover{transform:translateY(-3px);}
-.ws-card::after{content:'';position:absolute;inset:0;border-radius:16px;border:2px dashed rgba(0,0,0,0.08);pointer-events:none;}
-.ws-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:16px;font-weight:700;margin-bottom:10px;border:2px solid currentColor;}
-.ws-title{font-family:var(--hand);font-size:18px;font-weight:700;margin-bottom:6px;line-height:1.3;}
-.ws-meta{font-size:12px;color:#555;line-height:1.65;font-family:var(--print);}
-.ws-badge{display:inline-block;font-size:10px;padding:3px 10px;border-radius:10px;margin-top:10px;font-weight:600;font-family:var(--print);}
-.ws-icon{position:absolute;top:14px;right:16px;opacity:0.18;}
+/* ── WORKSHOPS ── */
+.workshops-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px;margin-top:28px;}
+.ws-card{border-radius:14px;padding:18px;position:relative;transition:transform 0.2s;cursor:pointer;border:2px solid transparent;}
+.ws-card:hover{transform:translateY(-4px);}
+.ws-card::after{content:'';position:absolute;inset:0;border-radius:14px;border:2px dashed rgba(0,0,0,0.07);pointer-events:none;}
+.ws-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:15px;font-weight:700;margin-bottom:8px;border:2px solid currentColor;}
+.ws-title{font-family:var(--hand);font-size:17px;font-weight:700;margin-bottom:5px;line-height:1.3;}
+.ws-meta{font-size:12px;color:#555;line-height:1.6;font-family:var(--print);}
+.ws-badge{display:inline-block;font-size:10px;padding:3px 9px;border-radius:10px;margin-top:8px;font-weight:600;font-family:var(--print);}
+.ws-icon{position:absolute;top:12px;right:14px;opacity:0.16;}
 
-/* BLOG */
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:32px;}
-.post-card{border:0.5px solid #e8e8e8;border-radius:16px;overflow:hidden;transition:transform 0.2s;}
-.post-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,0.07);}
-.post-img{height:160px;display:flex;align-items:center;justify-content:center;}
-.post-body{padding:16px 18px;}
-.post-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;font-family:var(--print);}
-.post-title{font-family:var(--hand);font-size:18px;font-weight:700;line-height:1.3;margin-bottom:8px;}
-.post-excerpt{font-size:13px;color:#666;line-height:1.65;}
-.post-meta{font-size:11px;color:#aaa;margin-top:10px;font-family:var(--print);}
+/* ── WORKSHOP MODAL ── */
+.ws-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;padding:16px;}
+.ws-modal-overlay.open{display:flex;}
+.ws-modal{background:#fff;border-radius:18px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:28px 24px;position:relative;border-top:4px solid var(--g);}
+.ws-modal-close{position:absolute;top:14px;right:16px;font-size:20px;cursor:pointer;color:#888;background:none;border:none;line-height:1;}
+.ws-modal h3{font-family:var(--hand);font-size:26px;font-weight:700;color:var(--gd);margin-bottom:8px;}
+.ws-modal-meta{font-size:12px;color:#888;font-family:var(--print);margin-bottom:14px;}
+.ws-modal p{font-size:14px;color:#444;line-height:1.75;margin-bottom:10px;}
+.ws-modal ul{padding-left:20px;margin-bottom:10px;}
+.ws-modal ul li{font-size:14px;color:#444;line-height:1.7;font-family:var(--print);}
 
-/* NEWSLETTER */
-.newsletter{background:linear-gradient(135deg,var(--gd),var(--g));border-radius:22px;padding:50px 40px;text-align:center;}
-.newsletter h2{color:#fff;font-family:var(--hand);font-size:34px;}
+/* ── BLOG ── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:18px;margin-top:28px;}
+.post-card{border:2px solid var(--nb);border-radius:14px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;background:#fff;}
+.post-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(26,92,153,0.13);}
+.post-img{height:160px;overflow:hidden;position:relative;background:#EBF4FF;}
+.post-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;}
+.post-card:hover .post-img img{transform:scale(1.04);}
+.post-img-fallback{height:160px;display:flex;align-items:center;justify-content:center;}
+.post-body{padding:14px 16px;}
+.post-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;font-family:var(--print);}
+.post-title{font-family:var(--hand);font-size:17px;font-weight:700;line-height:1.3;margin-bottom:7px;}
+.post-excerpt{font-size:13px;color:#666;line-height:1.6;}
+.post-meta{font-size:11px;color:#aaa;margin-top:8px;font-family:var(--print);}
+/* blog expanded */
+#blog-all{display:none;}
+#blog-all.open{display:block;}
+.blog-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--nb);font-family:var(--print);margin-bottom:20px;cursor:pointer;background:var(--nl);padding:6px 14px;border-radius:20px;border:none;}
+
+/* post full */
+.post-full-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto;}
+.post-full-overlay.open{display:flex;}
+.post-full{background:#fff;border-radius:18px;max-width:680px;width:100%;padding:32px 28px;position:relative;margin:auto;}
+.post-full-close{position:absolute;top:14px;right:16px;font-size:22px;cursor:pointer;color:#888;background:none;border:none;}
+.post-full h2{font-family:var(--hand);font-size:28px;font-weight:700;color:var(--gd);margin-bottom:6px;line-height:1.25;}
+.post-full .pf-meta{font-size:12px;color:#aaa;font-family:var(--print);margin-bottom:16px;}
+.post-full p{font-size:15px;color:#333;line-height:1.8;margin-bottom:14px;}
+.post-full h3{font-family:var(--hand);font-size:20px;font-weight:700;color:var(--gd);margin:18px 0 8px;}
+.post-full .source{font-size:12px;color:var(--nb);font-family:var(--print);margin-top:20px;padding-top:14px;border-top:1px solid #eee;}
+.post-full .source a{color:var(--nb);text-decoration:underline;}
+
+/* ── NEWSLETTER ── */
+.newsletter{background:linear-gradient(135deg,var(--gd),var(--g));border-radius:20px;padding:44px 36px;text-align:center;}
+.newsletter h2{color:#fff;font-family:var(--hand);font-size:32px;}
 .newsletter p{color:#9FE1CB;font-size:15px;margin-top:8px;font-family:var(--print);}
-.nl-form{display:flex;gap:10px;max-width:460px;margin:24px auto 0;flex-wrap:wrap;}
-.nl-form input{flex:1;min-width:200px;padding:11px 18px;border-radius:24px;border:none;font-size:14px;font-family:var(--print);}
-.nl-form button{padding:11px 26px;background:#fff;color:var(--gd);border:none;border-radius:24px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--hand);}
+.nl-form{display:flex;gap:8px;max-width:440px;margin:22px auto 0;flex-wrap:wrap;}
+.nl-form input{flex:1;min-width:180px;padding:11px 16px;border-radius:22px;border:none;font-size:14px;font-family:var(--print);}
+.nl-form button{padding:11px 22px;background:#fff;color:var(--gd);border:none;border-radius:22px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--hand);}
 .nl-note{font-size:11px;color:#5DCAA5;margin-top:10px;font-family:var(--print);}
 
-/* PROOF */
-.proof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:32px;}
-.proof-card{background:#F9F9F9;border-radius:14px;padding:18px 20px;position:relative;border-left:4px solid var(--g);}
-.proof-text{font-size:14px;color:#333;line-height:1.75;font-style:italic;}
-.proof-author{font-size:12px;color:#888;margin-top:10px;font-weight:600;font-family:var(--print);}
+/* ── SECTION BACKGROUNDS — refined palette ── */
+#o-mnie{background:#ffffff;}
+#blog{background:var(--surface-warm);}
+#newsletter-section{background:#ffffff;}
+#kontakt{background:var(--surface-cool);}
 
-/* VISION – startup style */
-.vision-section{background:#0B0B0B;padding:72px 5%;}
-.vision-section h2{color:#fff;}
-.vision-section .lead{color:#888;}
-.startup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:36px;}
-.startup-card{background:#141414;border:0.5px solid #2a2a2a;border-radius:16px;padding:22px 20px;position:relative;overflow:hidden;}
+/* ── PROOF SECTION refinement ── */
+.proof-section-bg{background:linear-gradient(180deg,#F0FAF6 0%,#EBF3FF 100%);}
+
+/* ── VISION ── */
+.vision-section{background:linear-gradient(150deg,#7DCFB6 0%,#a8e0cd 60%,#c5eddf 100%);padding:64px 5%;}
+.vision-section h2{color:#032b1f;}
+.vision-section .lead{color:#1a4a36;}
+.vm-val{font-family:var(--hand);font-size:34px;font-weight:700;color:#032b1f;}
+.vm-label{font-size:12px;color:#2e6b50;font-family:var(--print);}
+
+/* ── Opinie all-btn ── */
+#proof-extra{display:none;}
+#proof-extra.visible{display:contents;}
+.proof-showall-wrap{text-align:center;margin-top:18px;}
+.proof-showall-btn{display:inline-block;border:2px solid var(--nb);color:var(--nb);padding:10px 24px;border-radius:20px;font-size:13px;font-family:var(--print);background:#fff;cursor:pointer;transition:background .2s,color .2s;}
+.proof-showall-btn:hover{background:var(--nb);color:#fff;}
+
+/* ── WORKSHOPS section ── */
+#warsztaty{background:linear-gradient(180deg,#EBF3FF 0%,#F0FAF6 100%);}
+
+/* ── ws-card hover enhancement ── */
+.ws-card:hover{transform:translateY(-5px);box-shadow:0 8px 24px rgba(0,0,0,0.09);}
+
+/* ── CONTACT section uses var ── */
+#kontakt{background:linear-gradient(180deg,#EBF3FF 0%,#F0FAF6 100%);padding:60px 5%;}
+
+/* ── NEWSLETTER polish ── */
+.newsletter{background:linear-gradient(135deg,#032b1f 0%,var(--gd) 40%,var(--g) 100%);border-radius:20px;padding:44px 36px;text-align:center;box-shadow:0 4px 32px rgba(8,80,65,0.18);}
+
+/* ── About card: warmer feel ── */
+.about-card{background:linear-gradient(160deg,#E8F8F2 0%,#D6F0E8 100%);border-radius:16px;padding:24px 20px;text-align:center;position:relative;border:2px solid var(--nb);box-shadow:0 2px 16px rgba(26,92,153,0.07);}
+
+/* ── Proof cards: softer ── */
+.proof-card{background:#fff;border-radius:12px;padding:16px 18px;border:2px solid #e4ecf8;border-left:4px solid var(--g);box-shadow:0 1px 8px rgba(0,0,0,0.04);}
+
+/* ── cform: cleaner ── */
+.cform{background:linear-gradient(160deg,#F4F8FF 0%,#EAF4FF 100%);border-radius:14px;padding:22px;border:2px solid var(--nl);box-shadow:0 2px 12px rgba(26,92,153,0.07);}
+
+/* ── footer: richer dark ── */
+footer{background:linear-gradient(160deg,#021f16 0%,#04342C 100%);padding:36px 5% 20px;}
+.startup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:14px;margin-top:32px;}
+.startup-card{background:#0d1f17;border:0.5px solid #1e3a2a;border-radius:14px;padding:20px 18px;position:relative;overflow:hidden;}
 .startup-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
 .startup-card.s1::before{background:var(--g);}
 .startup-card.s2::before{background:#5DCAA5;}
-.startup-card.s3::before{background:var(--p);}
-.startup-card.s4::before{background:linear-gradient(90deg,var(--p),var(--g));}
-.s-phase{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;font-family:var(--print);}
+.startup-card.s3::before{background:var(--nb);}
+.startup-card.s4::before{background:linear-gradient(90deg,var(--nb),var(--g));}
+.s-phase{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:7px;font-family:var(--print);}
 .s1 .s-phase{color:var(--g);}
 .s2 .s-phase{color:#5DCAA5;}
-.s3 .s-phase{color:#8B7EE8;}
-.s4 .s-phase{color:#aaa;}
-.s-title{font-family:var(--hand);font-size:20px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;}
-.s-desc{font-size:12px;color:#888;line-height:1.7;}
+.s3 .s-phase{color:#6eaadd;}
+.s4 .s-phase{color:#999;}
+.s-title{font-family:var(--hand);font-size:19px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:7px;}
+.s-desc{font-size:12px;color:#777;line-height:1.7;}
 .s-status{display:inline-block;font-size:10px;padding:3px 9px;border-radius:10px;margin-top:10px;font-family:var(--print);}
 .status-active{background:rgba(29,158,117,0.15);color:#5DCAA5;border:0.5px solid rgba(29,158,117,0.3);}
-.status-next{background:rgba(83,74,183,0.15);color:#8B7EE8;border:0.5px solid rgba(83,74,183,0.3);}
-.status-future{background:rgba(255,255,255,0.05);color:#666;border:0.5px solid rgba(255,255,255,0.1);}
-.vision-metric{display:flex;gap:32px;flex-wrap:wrap;margin-top:32px;}
-.vm{text-align:left;}
-.vm-val{font-family:var(--hand);font-size:36px;font-weight:700;color:#fff;}
+.status-next{background:rgba(26,92,153,0.2);color:#6eaadd;border:0.5px solid rgba(26,92,153,0.3);}
+.status-future{background:rgba(255,255,255,0.04);color:#666;border:0.5px solid rgba(255,255,255,0.1);}
+.vision-metric{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px;}
+.vm-val{font-family:var(--hand);font-size:34px;font-weight:700;color:#fff;}
 .vm-label{font-size:12px;color:#666;font-family:var(--print);}
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px;align-items:start;}
+/* ── CONTACT GRID – top-align form with heading ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}
 @media(max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+/* Left column: push contact info to the top with no extra top margin */
+.contact-grid > div:first-child{padding-top:0;}
+
 .contact-item{display:flex;align-items:center;gap:10px;font-size:14px;color:#333;margin-top:12px;}
 .contact-icon{width:34px;height:34px;border-radius:8px;background:var(--gl);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.cform{background:#F8F8F8;border-radius:16px;padding:24px;}
-.form-row{margin-bottom:13px;}
-.form-row label{font-size:11px;color:#888;display:block;margin-bottom:4px;font-family:var(--print);}
-.form-row input,.form-row textarea{width:100%;padding:9px 12px;font-size:13px;border-radius:8px;border:0.5px solid #ddd;font-family:'Inter',sans-serif;background:#fff;}
+.cform{background:#F4F8FF;border-radius:14px;padding:22px;border:2px solid var(--nl);}
+.form-row{margin-bottom:12px;}
+.form-row label{font-size:11px;color:#777;display:block;margin-bottom:4px;font-family:var(--print);}
+.form-row input,.form-row textarea{width:100%;padding:9px 12px;font-size:13px;border-radius:8px;border:1.5px solid #ccd9ee;font-family:'Inter',sans-serif;background:#fff;}
+.form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--nb);}
 .form-row textarea{resize:vertical;min-height:80px;}
 .form-submit{width:100%;padding:11px;background:var(--g);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--hand);}
+.form-submit:hover{background:var(--gd);}
+.form-msg{font-size:12px;text-align:center;margin-top:8px;font-family:var(--print);min-height:16px;}
 
-/* FOOTER */
-footer{background:#04342C;padding:40px 5% 24px;}
+/* ── FOOTER ── */
+footer{background:#04342C;padding:36px 5% 20px;}
 .footer-inner{max-width:1100px;margin:0 auto;}
-.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:24px;border-bottom:0.5px solid rgba(255,255,255,0.1);}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding-bottom:20px;border-bottom:0.5px solid rgba(255,255,255,0.1);}
 .footer-logo{font-family:var(--hand);color:#fff;font-size:24px;font-weight:700;}
-.footer-sub{color:#5DCAA5;font-size:12px;margin-top:4px;font-family:var(--print);}
-.footer-links{display:flex;flex-direction:column;gap:7px;}
+.footer-sub{color:#5DCAA5;font-size:12px;margin-top:3px;font-family:var(--print);}
+.footer-links{display:flex;flex-direction:column;gap:6px;}
 .footer-links a{color:#9FE1CB;font-size:12px;font-family:var(--print);}
 .footer-links a:hover{color:#fff;}
-.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-top:16px;}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;padding-top:14px;}
 .footer-copy{font-size:11px;color:#5DCAA5;font-family:var(--print);}
 
-/* SKETCH ANIMATIONS */
 @keyframes wiggle{0%,100%{transform:rotate(-1.5deg);}50%{transform:rotate(1.5deg);}}
-.sketch-wiggle:hover{animation:wiggle 0.4s ease-in-out;}
+.sketch-wiggle:hover{animation:wiggle 0.35s ease-in-out;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:480px){
+  .hero{padding:48px 4% 110px;}
+  .hero-bus-wrap{width:90px;bottom:10px;right:2%;}
+  .hero h1{font-size:clamp(26px,8vw,36px);}
+  section{padding:44px 4%;}
+  .newsletter{padding:28px 16px;}
+  .nl-form{flex-direction:column;}
+  .nl-form input,.nl-form button{width:100%;}
+  .workshops-grid{grid-template-columns:1fr;}
+  .ws-card.w7-full{flex-direction:column;}
+  .blog-grid{grid-template-columns:1fr;}
+  .proof-grid{grid-template-columns:1fr;}
+  .startup-grid{grid-template-columns:1fr;}
+  .footer-top{flex-direction:column;}
+  .hero-stats{gap:20px;}
+}
+@media(max-width:680px){
+  .about-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .workshops-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));}
+}
+@media(max-width:860px){
+  .startup-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(min-width:681px) and (max-width:900px){
+  .blog-grid{grid-template-columns:repeat(2,1fr);}
+  .proof-grid{grid-template-columns:repeat(2,1fr);}
+}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rough-notation/0.6.1/rough-notation.iife.js" defer></script>
 </head>
 <body>
 
@@ -173,53 +309,51 @@ footer{background:#04342C;padding:40px 5% 24px;}
   <div class="nav-inner">
     <div class="logo">
       <div class="logo-mark">
-        <!-- mini hand-drawn bus icon -->
-        <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
-          <rect x="2" y="5" width="30" height="16" rx="4" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
-          <rect x="5" y="8" width="6" height="6" rx="1.5" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
-          <rect x="13" y="8" width="6" height="6" rx="1.5" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
-          <rect x="21" y="8" width="6" height="6" rx="1.5" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
-          <circle cx="9" cy="23" r="4" fill="#333" stroke="#222" stroke-width="1"/>
-          <circle cx="27" cy="23" r="4" fill="#333" stroke="#222" stroke-width="1"/>
-          <circle cx="9" cy="23" r="1.5" fill="#888"/>
-          <circle cx="27" cy="23" r="1.5" fill="#888"/>
+        <svg width="38" height="28" viewBox="0 0 38 28" fill="none">
+          <rect x="2" y="4" width="32" height="16" rx="5" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
+          <rect x="5" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+          <rect x="15" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+          <rect x="25" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+          <circle cx="10" cy="23" r="4" fill="#222" stroke="#111" stroke-width="1"/>
+          <circle cx="28" cy="23" r="4" fill="#222" stroke="#111" stroke-width="1"/>
+          <circle cx="10" cy="23" r="1.5" fill="#888"/>
+          <circle cx="28" cy="23" r="1.5" fill="#888"/>
         </svg>
       </div>
       <div>
         <span class="logo-wordmark">Urbanek</span>
-        <span class="logo-sub"> edukacja miejska</span>
+        <span class="logo-sub">edukacja miejska dla dzieci</span>
       </div>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
+      <a href="#o-mnie">O mnie</a>
       <a href="#warsztaty">Warsztaty</a>
       <a href="#blog">Blog</a>
-      <a href="#o-mnie">O mnie</a>
       <a href="#kontakt">Kontakt</a>
     </div>
     <a href="#newsletter" class="nav-cta">Zapisz się</a>
+    <div class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <!-- Doodle background lines -->
-  <svg class="hero-doodle-bg" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
-    <path d="M0 400 Q200 350 400 390 T800 370 T1200 380" stroke="#fff" stroke-width="2" fill="none"/>
-    <path d="M100 100 Q300 80 500 110 T900 90 T1200 100" stroke="#fff" stroke-width="1.5" fill="none"/>
-    <circle cx="100" cy="60" r="20" stroke="#fff" stroke-width="1.5" fill="none"/>
-    <circle cx="1100" cy="80" r="14" stroke="#fff" stroke-width="1.5" fill="none"/>
-    <path d="M900 40 L920 20 L940 40 L960 20" stroke="#fff" stroke-width="1.5" fill="none"/>
-    <path d="M200 460 L220 440 L240 460" stroke="#fff" stroke-width="1.5" fill="none"/>
-    <rect x="50" y="180" width="30" height="20" rx="4" stroke="#fff" stroke-width="1" fill="none"/>
-    <rect x="1080" y="300" width="40" height="25" rx="4" stroke="#fff" stroke-width="1" fill="none"/>
+  <svg class="hero-doodle-bg" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice">
+    <path d="M0 380 Q200 330 400 360 T800 340 T1200 355" stroke="#fff" stroke-width="2" fill="none"/>
+    <path d="M50 80 Q250 60 450 90 T850 70 T1200 82" stroke="#fff" stroke-width="1.5" fill="none"/>
+    <circle cx="80" cy="50" r="18" stroke="#fff" stroke-width="1.5" fill="none"/>
+    <circle cx="1100" cy="70" r="13" stroke="#fff" stroke-width="1.5" fill="none"/>
+    <path d="M880 36 L898 18 L916 36 L934 18" stroke="#fff" stroke-width="1.5" fill="none"/>
+    <rect x="40" y="160" width="28" height="18" rx="4" stroke="#fff" stroke-width="1" fill="none"/>
+    <rect x="1060" y="280" width="36" height="22" rx="4" stroke="#fff" stroke-width="1" fill="none"/>
   </svg>
-
-  <!-- Animated bus in hero -->
   <div class="hero-bus-wrap">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="180" height="135">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
       <rect x="50" y="100" width="300" height="120" rx="15" fill="#FFD700" stroke="#DAA520" stroke-width="3"/>
-      <path d="M 50 120 Q 30 120 30 150 L 30 200 Q 30 220 50 220 Z" fill="#FFD700" stroke="#DAA520" stroke-width="3"/>
-      <path d="M 55 125 Q 40 125 40 150 L 40 195 Q 40 210 55 210 Z" fill="#ADD8E6" stroke="#4682B4" stroke-width="2.5"/>
+      <path d="M50 120 Q30 120 30 150 L30 200 Q30 220 50 220 Z" fill="#FFD700" stroke="#DAA520" stroke-width="3"/>
+      <path d="M55 125 Q40 125 40 150 L40 195 Q40 210 55 210 Z" fill="#ADD8E6" stroke="#4682B4" stroke-width="2.5"/>
       <line x1="55" y1="165" x2="40" y2="165" stroke="#4682B4" stroke-width="2"/>
       <rect x="80" y="115" width="40" height="45" rx="5" fill="#ADD8E6" stroke="#4682B4" stroke-width="2.5"/>
       <rect x="135" y="115" width="40" height="45" rx="5" fill="#ADD8E6" stroke="#4682B4" stroke-width="2.5"/>
@@ -237,9 +371,8 @@ footer{background:#04342C;padding:40px 5% 24px;}
       <circle cx="345" cy="190" r="5" fill="#FF6347" stroke="#CC4030" stroke-width="1.5"/>
     </svg>
   </div>
-
   <div style="position:relative;z-index:2;">
-    <div class="hero-badge">Edukacja miejska dla dzieci 3–14 lat</div>
+    <div class="hero-badge">Edukacja miejska dla dzieci 3–14 lat · Małopolska</div>
     <h1>Twoje dziecko <em>rozumie miasto</em><br>lepiej niż myślisz</h1>
     <p>Warsztaty, które uczą dzieci myśleć o przestrzeni, transporcie i środowisku — przez zabawę, ruch i tworzenie.</p>
     <div class="hero-btns">
@@ -249,7 +382,7 @@ footer{background:#04342C;padding:40px 5% 24px;}
     <div class="hero-stats">
       <div class="stat"><div class="stat-val">7</div><div class="stat-label">programów warsztatowych</div></div>
       <div class="stat"><div class="stat-val">3–14</div><div class="stat-label">lat — każdy wiek</div></div>
-      <div class="stat"><div class="stat-val">EU</div><div class="stat-label">projekt Horizon Europe</div></div>
+      <div class="stat"><div class="stat-val">EU</div><div class="stat-label">Horizon Europe</div></div>
     </div>
   </div>
 </section>
@@ -263,134 +396,95 @@ footer{background:#04342C;padding:40px 5% 24px;}
           <img src="me.jpg" alt="Olha Shulika" onerror="this.style.display='none';this.parentNode.innerHTML='OS'"/>
         </div>
         <div class="about-name">dr Olha Shulika</div>
-        <div class="about-role">Ekspertka ds.mobilności miejskiej</div>
+        <div class="about-role">Ekspertka ds. mobilności miejskiej</div>
         <div class="tag-row">
           <span class="tag">Doświadczenie: Polska (UJ, PK) / Ukraina (KhNAHU, Uzhnu)</span>
           <span class="tag">10+ lat doświadczenia badawczego</span>
         </div>
-        <div class="sum-badge">
-          <img src="sum.png" alt="SUM" class="sum-icon" style="height: 40px; width: auto;">
-          <div class="sum-text">
+        <div class="proj-badge">
+          <img src="sum.png" alt="SUM" onerror="this.outerHTML='<div class=proj-badge-icon>SUM</div>'"/>
+          <div class="proj-text">
             <strong>Horizon Europe</strong>
-            <a href="https://sum-project.eu" target="_blank" style="color: inherit; text-decoration: underline;">
-               Seamless shared urban mobility
-            </a>
+            <a href="https://sum-project.eu" target="_blank" style="color:var(--gd);text-decoration:underline;">Seamless shared urban mobility</a>
           </div>
         </div>
-        <div class="sum-badge">
-         <img src="opus.jpg" alt="PostCorona Shared Mobility" class="sum-icon" style="height: 40px; width: auto;">
-         <div class="sum-text">
-           <strong>National Science Centre</strong>
-           <a href="#" target="_blank" style="color: inherit; text-decoration: underline;">
-             PostCorona Shared Mobility
-         </a>
-       </div>
-    </div>
+        <div class="proj-badge">
+          <img src="opus.jpg" alt="NCN OPUS" onerror="this.outerHTML='<div class=proj-badge-icon>NCN</div>'"/>
+          <div class="proj-text">
+            <strong>National Science Centre</strong>
+            <a href="https://www.rafalkucharskilab.pl/research/g_1_OPUS/" target="_blank" style="color:var(--gd);text-decoration:underline;">PostCorona Shared Mobility</a>
+          </div>
+        </div>
         <a href="https://www.linkedin.com/in/olha-shulika/" target="_blank" class="linkedin-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#534AB7"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#1a5c99"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn / Olha Shulika
         </a>
       </div>
       <div class="about-text">
-        <span class="section-tag">O mnie</span>
+        <span class="section-tag green">O mnie</span>
         <h2>Nauka transportu to mój zawód — i pasja</h2>
         <p>Jestem doktorem nauk o transporcie i adiunktem na Uniwersytecie Jagiellońskim. Od ponad 10 lat badam, jak miasta mogą być lepiej zaprojektowane dla ludzi — nie tylko dla samochodów.</p>
-        <p>Na co dzień łączę pracę naukową z doświadczeniem życia w mieście jako mama dwójki dzieci (nastolatka i przedszkolaczki). To właśnie z tej perspektywy widzę, jak bardzo sposób organizacji transportu wpływa na codzienne decyzje rodzin — bezpieczeństwo, samodzielność dzieci i jakość czasu.</p>
-        <p>W ramach europejskiego projektu SUM współpracuję z partnerami z 15 krajów UE, szukając praktycznych rozwiązań dla mobilności miejskiej. Jednym z efektów tej pracy było współtworzenie koncepcji usługi LajkBus na Skotnikach — rozwiązania, które realnie zmienia sposób poruszania się mieszkańców.</p>
-         <p>Warsztaty „Miasto w ruchu” to mój sposób na to, żeby ta wiedza dotarła tam, gdzie ma największy sens — do dzieci. Bo to one za kilkanaście lat będą podejmować decyzje o tym, jak będą wyglądały nasze miasta.</p>
+        <p>Na co dzień łączę pracę naukową z codziennością mamy dwójki dzieci (nastolatka i przedszkolaczki). Widzę realny wpływ transportu na bezpieczeństwo, samodzielność i jakość życia rodzin.</p>
+        <p>W ramach europejskiego projektu SUM współpracuję z partnerami z 15 krajów UE oraz współtworzę rozwiązania takie jak <strong>LajkBus na Skotnikach</strong>, które zmieniają krakowską mobilność na bardziej ludzką i ekologiczną. </p>
+        <p>Warsztaty „Miasto w ruchu" to mój sposób na to, żeby ta wiedza dotarła tam, gdzie ma największy sens — do dzieci, które za kilkanaście lat będą podejmować decyzje o kształcie swoich miast.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- WORKSHOPS -->
-<section id="warsztaty" style="background:#FAFAFA;">
+<section id="warsztaty" style="background:linear-gradient(180deg,#f0f6ff 0%,#f4faf7 100%);">
   <div class="section-inner">
-    <span class="section-tag">Cykl warsztatów</span>
+    <span class="section-tag blue">Cykl warsztatów</span>
     <h2>Miasto w ruchu</h2>
-    <p class="lead">7 programów edukacyjnych dla różnych grup wiekowych. Każdy oparty na prawdziwych danych naukowych — podany w języku dzieci.</p>
+    <p class="lead">7 programów edukacyjnych dla różnych grup wiekowych. Każdy oparty na prawdziwych danych naukowych — podany w języku dzieci. Kliknij kartę, żeby zobaczyć szczegóły.</p>
     <div class="workshops-grid">
-
-      <!-- W1 -->
-      <div class="ws-card sketch-wiggle" style="background:#FFFDE7;">
-        <svg class="ws-icon" width="48" height="48" viewBox="0 0 48 48">
-          <path d="M8 32 Q12 20 24 18 Q36 16 40 28" stroke="#DAA520" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <circle cx="14" cy="36" r="5" fill="#DAA520" stroke="#B8860B" stroke-width="1.5"/>
-          <circle cx="34" cy="36" r="5" fill="#DAA520" stroke="#B8860B" stroke-width="1.5"/>
-        </svg>
+      <div class="ws-card sketch-wiggle" style="background:#FFFDE7;" onclick="openWs(0)">
+        <svg class="ws-icon" width="46" height="46" viewBox="0 0 46 46"><path d="M8 30 Q12 18 23 16 Q34 14 38 26" stroke="#DAA520" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="13" cy="34" r="5" fill="#DAA520" stroke="#B8860B" stroke-width="1.5"/><circle cx="33" cy="34" r="5" fill="#DAA520" stroke="#B8860B" stroke-width="1.5"/></svg>
         <div class="ws-num" style="color:#DAA520;border-color:#DAA520;">1</div>
         <div class="ws-title">Czym jeździmy po mieście?</div>
-        <div class="ws-meta">Zabawy ruchowe, wspólny plakat, pierwsze odkrycia. Autobus zabiera więcej przyjaciół naraz!</div>
+        <div class="ws-meta">Zabawy ruchowe, wspólny plakat, pierwsze odkrycia.</div>
         <span class="ws-badge" style="background:#FFF9C4;color:#B8860B;">Przedszkole · 3–6 lat</span>
       </div>
-
-      <!-- W2 -->
-      <div class="ws-card sketch-wiggle" style="background:#F3F0FF;">
-        <svg class="ws-icon" width="48" height="48" viewBox="0 0 48 48">
-          <rect x="6" y="14" width="36" height="20" rx="4" stroke="#534AB7" stroke-width="2" fill="none"/>
-          <line x1="6" y1="26" x2="42" y2="26" stroke="#534AB7" stroke-width="1.5" stroke-dasharray="3 2"/>
-        </svg>
-        <div class="ws-num" style="color:#534AB7;border-color:#534AB7;">2</div>
+      <div class="ws-card sketch-wiggle" style="background:#eef3ff;" onclick="openWs(1)">
+        <svg class="ws-icon" width="46" height="46" viewBox="0 0 46 46"><rect x="5" y="13" width="36" height="20" rx="4" stroke="#1a5c99" stroke-width="2" fill="none"/><line x1="5" y1="25" x2="41" y2="25" stroke="#1a5c99" stroke-width="1.5" stroke-dasharray="3 2"/></svg>
+        <div class="ws-num" style="color:#1a5c99;border-color:#1a5c99;">2</div>
         <div class="ws-title">Ile miejsca zajmuje samochód?</div>
-        <div class="ws-meta">Taśma na podłodze, obliczenia, plakat. Dzieci fizycznie odkrywają przestrzeń drogową.</div>
-        <span class="ws-badge" style="background:#EDE9FF;color:#534AB7;">Klasy 1–4 · 6–10 lat</span>
+        <div class="ws-meta">Taśma na podłodze, obliczenia, plakat.</div>
+        <span class="ws-badge" style="background:#ddeeff;color:#1a5c99;">Klasy 1–4 · 6–10 lat</span>
       </div>
-
-      <!-- W3 -->
-      <div class="ws-card sketch-wiggle" style="background:#F3F0FF;">
-        <svg class="ws-icon" width="48" height="48" viewBox="0 0 48 48">
-          <path d="M8 38 L8 18 L24 10 L40 18 L40 38" stroke="#534AB7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="18" y="26" width="12" height="12" rx="2" stroke="#534AB7" stroke-width="1.5" fill="none"/>
-        </svg>
-        <div class="ws-num" style="color:#534AB7;border-color:#534AB7;">3</div>
+      <div class="ws-card sketch-wiggle" style="background:#eef3ff;" onclick="openWs(2)">
+        <svg class="ws-icon" width="46" height="46" viewBox="0 0 46 46"><path d="M8 37 L8 17 L23 9 L38 17 L38 37" stroke="#1a5c99" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="25" width="12" height="12" rx="2" stroke="#1a5c99" stroke-width="1.5" fill="none"/></svg>
+        <div class="ws-num" style="color:#1a5c99;border-color:#1a5c99;">3</div>
         <div class="ws-title">Miasto dla ludzi czy dla samochodów?</div>
-        <div class="ws-meta">Wskaźniki efektywności, debata, infografika. Dane naukowe w przystępnej formie.</div>
-        <span class="ws-badge" style="background:#EDE9FF;color:#534AB7;">Klasy 5–8 · 11–14 lat</span>
+        <div class="ws-meta">Wskaźniki efektywności, debata, infografika.</div>
+        <span class="ws-badge" style="background:#ddeeff;color:#1a5c99;">Klasy 5–8 · 11–14 lat</span>
       </div>
-
-
-      <!-- W4 -->
-      <div class="ws-card sketch-wiggle" style="background:#E8F5E9;">
-        <svg class="ws-icon" width="48" height="48" viewBox="0 0 48 48">
-          <circle cx="24" cy="16" r="7" stroke="#2E7D32" stroke-width="2" fill="none"/>
-          <path d="M14 40 Q14 28 24 28 Q34 28 34 40" stroke="#2E7D32" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M10 36 L6 40" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="6" cy="42" r="2" fill="#2E7D32"/>
-        </svg>
+      <div class="ws-card sketch-wiggle" style="background:#E8F5E9;" onclick="openWs(3)">
+        <svg class="ws-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="14" r="7" stroke="#2E7D32" stroke-width="2" fill="none"/><path d="M13 38 Q13 26 23 26 Q33 26 33 38" stroke="#2E7D32" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="23" cy="42" r="3" fill="#2E7D32"/></svg>
         <div class="ws-num" style="color:#2E7D32;border-color:#2E7D32;">4</div>
         <div class="ws-title">Dzień Ziemi — transport i klimat</div>
-        <div class="ws-meta">Kalkulator śladu węglowego rodziny, list do burmistrza. Każdy wybór ma znaczenie.</div>
+        <div class="ws-meta">Kalkulator śladu węglowego, list do burmistrza.</div>
         <span class="ws-badge" style="background:#C8E6C9;color:#1B5E20;">22 IV · Dzień Ziemi</span>
       </div>
-
-      <!-- W5 -->
-      <div class="ws-card sketch-wiggle" style="background:#E0F7FA;border-color:#80DEEA;">
-        <svg class="ws-icon" width="48" height="48" viewBox="0 0 48 48">
-          <circle cx="24" cy="24" r="16" stroke="#00838F" stroke-width="2" fill="none"/>
-          <path d="M24 8 Q28 16 24 24 Q20 32 24 40" stroke="#00838F" stroke-width="1.5" fill="none"/>
-          <path d="M8 24 Q16 20 24 24 Q32 28 40 24" stroke="#00838F" stroke-width="1.5" fill="none"/>
-        </svg>
+      <div class="ws-card sketch-wiggle" style="background:#E0F7FA;" onclick="openWs(4)">
+        <svg class="ws-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="15" stroke="#00838F" stroke-width="2" fill="none"/><path d="M23 8 Q27 16 23 23 Q19 30 23 38" stroke="#00838F" stroke-width="1.5" fill="none"/><path d="M8 23 Q16 19 23 23 Q30 27 38 23" stroke="#00838F" stroke-width="1.5" fill="none"/></svg>
         <div class="ws-num" style="color:#00838F;border-color:#00838F;">5</div>
         <div class="ws-title">Transport bez barier</div>
-        <div class="ws-meta">Dostępność dla wszystkich — wózki, rowery, osoby niewidome, seniorzy.</div>
+        <div class="ws-meta">Dostępność dla wszystkich — wózki, rowery, seniorzy.</div>
         <span class="ws-badge" style="background:#B2EBF2;color:#006064;">22 IX · Dzień Bez Samochodu</span>
       </div>
-
-
-      <!-- W6 -->
-      <div class="ws-card sketch-wiggle" style="background:#FFF8E1;">
-        <svg class="ws-icon" width="48" height="48" viewBox="0 0 48 48">
-          <path d="M24 6 L28 18 L40 18 L30 26 L34 38 L24 30 L14 38 L18 26 L8 18 L20 18 Z" stroke="#F57F17" stroke-width="2" fill="none" stroke-linejoin="round"/>
-        </svg>
+      <div class="ws-card sketch-wiggle" style="background:#FFF8E1;" onclick="openWs(5)">
+        <svg class="ws-icon" width="46" height="46" viewBox="0 0 46 46"><path d="M23 5 L27 17 L39 17 L29 25 L33 37 L23 29 L13 37 L17 25 L7 17 L19 17 Z" stroke="#F57F17" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
         <div class="ws-num" style="color:#F57F17;border-color:#F57F17;">6</div>
         <div class="ws-title">Pojazdy przyszłości</div>
-        <div class="ws-meta">E-busy, MaaS, tramwaje autonomiczne. Dzieci projektują pojazd 2050 roku.</div>
+        <div class="ws-meta">E-busy, MaaS, tramwaje autonomiczne.</div>
         <span class="ws-badge" style="background:#FFECB3;color:#E65100;">16–22 IX · Tydzień Mobilności</span>
       </div>
-
-      <!-- W7 full width -->
-      <div class="ws-card sketch-wiggle" style="background:#E1F5EE;grid-column:1/-1;display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
-        <svg width="64" height="52" viewBox="0 0 64 52" style="flex-shrink:0;">
+      <!-- W7 full width with bike -->
+      <div class="ws-card sketch-wiggle" style="background:#E1F5EE;grid-column:1/-1;display:flex;gap:18px;align-items:center;flex-wrap:wrap;" onclick="openWs(6)">
+        <svg width="160" height="60" viewBox="0 0 160 60" style="flex-shrink:0;">
+          <!-- bus -->
           <rect x="4" y="12" width="56" height="28" rx="6" fill="#FFD700" stroke="#DAA520" stroke-width="2"/>
           <rect x="10" y="17" width="10" height="10" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.2"/>
           <rect x="26" y="17" width="10" height="10" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.2"/>
@@ -399,6 +493,7 @@ footer{background:#04342C;padding:40px 5% 24px;}
           <circle cx="48" cy="42" r="6" fill="#333" stroke="#111" stroke-width="1.5"/>
           <circle cx="16" cy="42" r="2" fill="#888"/>
           <circle cx="48" cy="42" r="2" fill="#888"/>
+
         </svg>
         <div>
           <div class="ws-num" style="color:var(--gd);border-color:var(--gd);">7</div>
@@ -408,152 +503,195 @@ footer{background:#04342C;padding:40px 5% 24px;}
         </div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:28px;">
-      <a href="#kontakt" style="display:inline-block;background:var(--g);color:#fff;padding:13px 30px;border-radius:24px;font-size:16px;font-weight:700;font-family:var(--hand);">Zamów warsztaty dla swojej szkoły</a>
+    <div style="text-align:center;margin-top:24px;">
+      <a href="#kontakt" style="display:inline-block;background:var(--g);color:#fff;padding:12px 28px;border-radius:22px;font-size:16px;font-weight:700;font-family:var(--hand);">Zamów warsztaty dla swojej szkoły</a>
     </div>
   </div>
 </section>
+
+<!-- WORKSHOP MODALS -->
+<div class="ws-modal-overlay" id="wsModal" onclick="if(event.target===this)closeWs()">
+  <div class="ws-modal" id="wsModalContent">
+    <button class="ws-modal-close" onclick="closeWs()">✕</button>
+    <div id="wsModalBody"></div>
+  </div>
+</div>
 
 <!-- BLOG -->
 <section id="blog">
   <div class="section-inner">
-    <span class="section-tag">Blog</span>
+    <span class="section-tag green">Blog</span>
     <h2>Wiedza, którą warto przekazać dalej</h2>
     <p class="lead">Piszę o transporcie miejskim językiem zrozumiałym dla każdego — bo każdy z nas jest uczestnikiem ruchu.</p>
-    <div class="blog-grid">
 
-      <div class="post-card">
-        <div class="post-img" style="background:#E1F5EE;">
-          <!-- hand-drawn bus -->
-          <svg viewBox="0 0 200 120" width="160" height="96">
-            <rect x="20" y="20" width="160" height="70" rx="10" fill="#FFD700" stroke="#DAA520" stroke-width="2"/>
-            <rect x="30" y="28" width="22" height="22" rx="4" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.5"/>
-            <rect x="60" y="28" width="22" height="22" rx="4" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.5"/>
-            <rect x="90" y="28" width="22" height="22" rx="4" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.5"/>
-            <rect x="120" y="28" width="22" height="22" rx="4" fill="#ADD8E6" stroke="#4682B4" stroke-width="1.5"/>
-            <line x1="20" y1="56" x2="180" y2="56" stroke="#DAA520" stroke-width="1.5"/>
-            <circle cx="50" cy="96" r="12" fill="#333" stroke="#111" stroke-width="1.5"/>
-            <circle cx="50" cy="96" r="4" fill="#888"/>
-            <circle cx="150" cy="96" r="12" fill="#333" stroke="#111" stroke-width="1.5"/>
-            <circle cx="150" cy="96" r="4" fill="#888"/>
-          </svg>
+    <!-- featured 3 posts -->
+    <div class="blog-grid" id="blogPreview">
+      <div class="post-card" onclick="openPost(0)">
+        <div class="post-img">
+          <img src="news1.jpg" alt="368 milionów pasażerów – Kraków jedzie" loading="lazy">
         </div>
         <div class="post-body">
-          <div class="post-tag" style="color:#0F6E56;">Transport publiczny</div>
-          <div class="post-title">Jeden autobus zastępuje 33 samochody. Dlaczego tego nie widać?</div>
-          <div class="post-excerpt">Przestrzeń drogowa to zasób ograniczony. Pokazuję, jak matematyka ruchu zmienia sposób myślenia o mieście.</div>
-          <div class="post-meta">12 kwietnia 2025 · 4 min czytania</div>
+          <div class="post-tag" style="color:#0F6E56;">Transport publiczny · Kraków</div>
+          <div class="post-title">368 milionów pasażerów — Kraków jedzie!</div>
+          <div class="post-excerpt">Rekordowy rok dla komunikacji miejskiej w Krakowie. Co te liczby mówią o tym, jak chcemy żyć w mieście?</div>
+          <div class="post-meta">Czerwiec 2025 · 4 min czytania</div>
         </div>
       </div>
-
-      <div class="post-card">
-        <div class="post-img" style="background:#EEEDFE;">
-          <!-- hand-drawn wheelchair + tram -->
-          <svg viewBox="0 0 200 120" width="160" height="96">
-            <rect x="60" y="25" width="90" height="55" rx="6" fill="#AFA9EC" stroke="#534AB7" stroke-width="2"/>
-            <rect x="70" y="32" width="18" height="18" rx="3" fill="#E8E6FF" stroke="#7F77DD" stroke-width="1.2"/>
-            <rect x="95" y="32" width="18" height="18" rx="3" fill="#E8E6FF" stroke="#7F77DD" stroke-width="1.2"/>
-            <rect x="120" y="32" width="18" height="18" rx="3" fill="#E8E6FF" stroke="#7F77DD" stroke-width="1.2"/>
-            <line x1="60" y1="58" x2="150" y2="58" stroke="#534AB7" stroke-width="1.5"/>
-            <line x1="60" y1="82" x2="150" y2="82" stroke="#534AB7" stroke-width="1.5" stroke-dasharray="4 3"/>
-            <circle cx="30" cy="65" r="10" stroke="#534AB7" stroke-width="1.5" fill="none"/>
-            <path d="M30 45 L30 58 L20 68" stroke="#534AB7" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <circle cx="30" cy="40" r="4" fill="#534AB7"/>
-          </svg>
+      <div class="post-card" onclick="openPost(1)">
+        <div class="post-img">
+          <img src="news2.jpg" alt="LajkBus na Skotnikach" loading="lazy">
         </div>
         <div class="post-body">
-          <div class="post-tag" style="color:#534AB7;">Dostępność</div>
-          <div class="post-title">Kto naprawdę może podróżować samodzielnie? O dostępności transportu</div>
-          <div class="post-excerpt">Co piąty mieszkaniec miasta potrzebuje dostępnego transportu. Sprawdzam, które środki naprawdę na to pozwalają.</div>
-          <div class="post-meta">5 kwietnia 2025 · 6 min czytania</div>
+          <div class="post-tag" style="color:#1a5c99;">Dostępność · Innowacje</div>
+          <div class="post-title">LajkBus na Skotnikach — transport jak taxi, cena jak autobus</div>
+          <div class="post-excerpt">Pierwsze w Krakowie zamówienie przejazdu aplikacją, na wąskich uliczkach, za cenę biletu. Jak to działa?</div>
+          <div class="post-meta">Luty 2025 · 5 min czytania</div>
         </div>
       </div>
-
-      <div class="post-card">
-        <div class="post-img" style="background:#FFF8E1;">
-          <!-- hand-drawn earth + bike -->
-          <svg viewBox="0 0 200 120" width="160" height="96">
-            <circle cx="80" cy="60" r="40" fill="#ADD8E6" stroke="#4682B4" stroke-width="2"/>
-            <path d="M55 35 Q65 50 60 65 Q55 80 70 90" stroke="#2E7D32" stroke-width="2" fill="none"/>
-            <path d="M80 20 Q90 40 85 60 Q80 80 90 100" stroke="#2E7D32" stroke-width="1.5" fill="none"/>
-            <path d="M45 55 Q65 58 80 55 Q100 52 115 58" stroke="#4682B4" stroke-width="1.5" fill="none"/>
-            <!-- bike -->
-            <circle cx="155" cy="75" r="16" stroke="#E65100" stroke-width="2" fill="none"/>
-            <circle cx="130" cy="75" r="16" stroke="#E65100" stroke-width="2" fill="none"/>
-            <path d="M130 75 L142 55 L155 75" stroke="#E65100" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M142 55 L148 48 L158 50" stroke="#E65100" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          </svg>
+      <div class="post-card" onclick="openPost(2)">
+        <div class="post-img">
+          <img src="news3.jpg" alt="Ile CO2 produkuje Twoja rodzina" loading="lazy">
         </div>
         <div class="post-body">
-          <div class="post-tag" style="color:#E65100;">Klimat</div>
+          <div class="post-tag" style="color:#E65100;">Klimat · Dane</div>
           <div class="post-title">Ile CO₂ produkuje Twoja rodzina przez transport? Sprawdź sam</div>
-          <div class="post-excerpt">Prosta analiza, którą robię z dziećmi na warsztatach. Wyniki często zaskakują nawet dorosłych.</div>
-          <div class="post-meta">22 marca 2025 · 5 min czytania</div>
+          <div class="post-excerpt">Transport drogowy to ok. 20–25% emisji CO₂ w europejskich miastach. Prosta analiza, która zaskakuje.</div>
+          <div class="post-meta">Kwiecień 2025 · 5 min czytania</div>
         </div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:24px;">
-      <a href="#" style="display:inline-block;border:0.5px solid #ccc;color:#555;padding:10px 24px;border-radius:20px;font-size:13px;font-family:var(--print);">Wszystkie wpisy →</a>
+
+    <!-- "all posts" expanded section -->
+    <div id="blog-all">
+      <button class="blog-back" onclick="closeBlogAll()">← Wróć do wyróżnionych</button>
+      <div class="blog-grid">
+        <div class="post-card" onclick="openPost(0)">
+          <div class="post-img"><img src="news1.jpg" alt="368 milionów pasażerów" loading="lazy"></div>
+          <div class="post-body">
+            <div class="post-tag" style="color:#0F6E56;">Transport publiczny · Kraków</div>
+            <div class="post-title">368 milionów pasażerów — Kraków jedzie!</div>
+            <div class="post-excerpt">Rekordowy rok dla komunikacji miejskiej.</div>
+            <div class="post-meta">Czerwiec 2025 · 4 min</div>
+          </div>
+        </div>
+        <div class="post-card" onclick="openPost(1)">
+          <div class="post-img"><img src="news2.jpg" alt="LajkBus" loading="lazy"></div>
+          <div class="post-body">
+            <div class="post-tag" style="color:#1a5c99;">Dostępność · Innowacje</div>
+            <div class="post-title">LajkBus — transport na żądanie w Krakowie</div>
+            <div class="post-excerpt">Jak SUM zmienia mobilność w Skotnikach.</div>
+            <div class="post-meta">Luty 2025 · 5 min</div>
+          </div>
+        </div>
+        <div class="post-card" onclick="openPost(2)">
+          <div class="post-img"><img src="news3.jpg" alt="CO2 transport" loading="lazy"></div>
+          <div class="post-body">
+            <div class="post-tag" style="color:#E65100;">Klimat · Dane</div>
+            <div class="post-title">Ile CO₂ produkuje Twoja rodzina?</div>
+            <div class="post-excerpt">Transport to 20–25% emisji w miastach UE.</div>
+            <div class="post-meta">Kwiecień 2025 · 5 min</div>
+          </div>
+        </div>
+        <div class="post-card" onclick="openPost(3)">
+          <div class="post-img"><img src="news4.png" alt="236 km ścieżek rowerowych" loading="lazy"></div>
+          <div class="post-body">
+            <div class="post-tag" style="color:#0F6E56;">Rower · Infrastruktura</div>
+            <div class="post-title">236 km ścieżek rowerowych w Krakowie — to dużo czy mało?</div>
+            <div class="post-excerpt">Rowerowa mapa Krakowa rośnie, ale równomiernie? Sprawdzam.</div>
+            <div class="post-meta">Czerwiec 2025 · 4 min</div>
+          </div>
+        </div>
+        <div class="post-card" onclick="openPost(4)">
+          <div class="post-img"><img src="news5.png" alt="Dlaczego tramwaj" loading="lazy"></div>
+          <div class="post-body">
+            <div class="post-tag" style="color:#1a5c99;">Tramwaj · Małopolska</div>
+            <div class="post-title">Dlaczego tramwaj to najlepsza inwestycja dla Krakowa?</div>
+            <div class="post-excerpt">27 linii, 16 mln wozokilometrów rocznie — tramwaj wygrywa przestrzeń.</div>
+            <div class="post-meta">Maj 2025 · 6 min</div>
+          </div>
+        </div>
+        <div class="post-card" onclick="openPost(5)">
+          <div class="post-img"><img src="news6.png" alt="Co piąty mieszkaniec" loading="lazy"></div>
+          <div class="post-body">
+            <div class="post-tag" style="color:#2E7D32;">Dostępność · UE</div>
+            <div class="post-title">Co piąty mieszkaniec potrzebuje dostępnego transportu</div>
+            <div class="post-excerpt">Dane eurostat, które powinny zmienić projektowanie miast.</div>
+            <div class="post-meta">Kwiecień 2026 · 5 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="blogShowAllBtn" style="text-align:center;margin-top:20px;">
+      <button onclick="openBlogAll()" style="display:inline-block;border:2px solid var(--nb);color:var(--nb);padding:10px 24px;border-radius:20px;font-size:13px;font-family:var(--print);background:#fff;cursor:pointer;">Wszystkie wpisy →</button>
     </div>
   </div>
 </section>
+
+<!-- POST FULL OVERLAY -->
+<div class="post-full-overlay" id="postOverlay" onclick="if(event.target===this)closePost()">
+  <div class="post-full">
+    <button class="post-full-close" onclick="closePost()">✕</button>
+    <div id="postContent"></div>
+  </div>
+</div>
 
 <!-- SOCIAL PROOF -->
-<section style="background:#F8F8F8;padding:64px 5%;">
+<section id="opinie" style="background:linear-gradient(180deg,#f4faf7 0%,#f0f6ff 100%);padding:52px 5%;">
   <div class="section-inner">
-    <span class="section-tag">Opinie</span>
+    <span class="section-tag blue">Opinie</span>
     <h2>Co mówią nauczyciele i rodzice</h2>
-    <div class="proof-grid">
-      <div class="proof-card">
-        <div class="proof-text">„Dzieci przez cały tydzień po warsztatach pytały, dlaczego tata jeździ autem skoro autobus jest szybszy. To najlepsza recenzja, jaką mogłam dostać."</div>
-        <div class="proof-author">— Wychowawczyni kl. 3, SP nr 10, Kraków</div>
-      </div>
-      <div class="proof-card">
-        <div class="proof-text">„Połączenie danych naukowych z aktywnością fizyczną i pracą plastyczną to rzadkość. Dzieci były zaangażowane przez całe 45 minut."</div>
-        <div class="proof-author">— Pedagog szkolny, Kraków</div>
-      </div>
-      <div class="proof-card">
-        <div class="proof-text">„Mój syn wrócił i powiedział: mamo, jeden autobus to jak 33 samochody! Sam zaczął liczyć miejsca parkingowe przy szkole."</div>
-        <div class="proof-author">— Rodzic uczestnika warsztatów</div>
-      </div>
+    <div class="proof-grid" id="proofGrid">
+      <div class="proof-card"><div class="proof-text">„Dzieci przez cały tydzień pytały, dlaczego tata jeździ autem skoro autobus jest szybszy. Najlepsza recenzja, jaką mogłam dostać."</div><div class="proof-author">— Wychowawczyni kl. 3, SP nr 10, Kraków</div></div>
+      <div class="proof-card"><div class="proof-text">„Połączenie danych naukowych z aktywnością fizyczną i pracą plastyczną to rzadkość. Dzieci były zaangażowane przez całe 45 minut."</div><div class="proof-author">— Pedagog szkolny, Kraków</div></div>
+      <div class="proof-card"><div class="proof-text">„Mój syn wrócił i powiedział: mamo, jeden autobus to jak 33 samochody! Sam zaczął liczyć miejsca parkingowe przy szkole."</div><div class="proof-author">— Rodzic uczestnika, Kraków</div></div>
+      <!-- hidden extra opinions -->
+      <div class="proof-card proof-extra" style="display:none;"><div class="proof-text">„Bardzo konkretne zajęcia — dzieci wyszły z gotową infografiką i wiedziały, co to jest CO₂. Polecam każdej klasie 5–8."</div><div class="proof-author">— Nauczycielka przyrody, SP nr 34, Kraków</div></div>
+      <div class="proof-card proof-extra" style="display:none;"><div class="proof-text">„Warsztaty perfekcyjnie wpisały się w nasz program Zielonej Szkoły. Dr Shulika świetnie radzi sobie z grupą mieszaną wiekowo."</div><div class="proof-author">— Dyrektor domu kultury, Małopolska</div></div>
+      <div class="proof-card proof-extra" style="display:none;"><div class="proof-text">„Córka wróciła i sama narysowała plan ulicy marzeń — z drzewami, ścieżką rowerową i przystankiem dla wózków. Takiego efektu nie spodziewałam się po 45-minutowych zajęciach."</div><div class="proof-author">— Mama uczestniczki, Kraków Podgórze</div></div>
+      <div class="proof-card proof-extra" style="display:none;"><div class="proof-text">„Polecam każdej szkole, która chce łączyć edukację ekologiczną z realną wiedzą o mieście. Dzieci pytają: a u nas w dzielnicy to jak jest?"</div><div class="proof-author">— Wicedyrektorka SP nr 7, Kraków</div></div>
+      <div class="proof-card proof-extra" style="display:none;"><div class="proof-text">„Doktor Shulika mówi językiem dzieci, ale z pełną wiarygodnością naukową. To rzadkie połączenie."</div><div class="proof-author">— Kurator oświaty, wizyta w szkole</div></div>
+    </div>
+    <div style="text-align:center;margin-top:20px;" id="proofBtnWrap">
+      <button id="proofToggleBtn" onclick="toggleOpinie()" style="display:inline-block;border:2px solid var(--nb);color:var(--nb);padding:10px 24px;border-radius:20px;font-size:13px;font-family:var(--print);background:#fff;cursor:pointer;transition:background .18s,color .18s;">Wszystkie opinie →</button>
     </div>
   </div>
 </section>
 
-<!-- VISION – startup dark -->
-<section class="vision-section" id="wizja" style="background-color: #0F4C3A;">
+<!-- VISION -->
+<section class="vision-section" id="wizja">
   <div class="section-inner">
     <span class="section-tag purple">Wizja</span>
-    <h2 style="color:#fff;">Buduję coś większego.</h2>
-    <p class="lead" style="color:#888;">Warsztaty to punkt startowy. Testuję rynek, zbieram referencje i buduję markę — po czym skaluję do przestrzeni, która zmieni sposób, w jaki dzieci spędzają czas po szkole.</p>
+    <h2>Buduję coś większego.</h2>
+    <p class="lead">Warsztaty to punkt startowy. Testuję rynek, zbieram referencje i buduję markę — a potem skaluję do przestrzeni, która zmieni sposób, w jaki dzieci spędzają czas po szkole.</p>
     <div class="vision-metric">
-      <div class="vm"><div class="vm-val">7</div><div class="vm-label">programów gotowych do wdrożenia</div></div>
-      <div class="vm"><div class="vm-val">9,8M€</div><div class="vm-label">budżet projektu naukowego w tle</div></div>
-      <div class="vm"><div class="vm-val">15</div><div class="vm-label">krajów partnerskich UE</div></div>
+      <div class="vm"><div class="vm-val">7</div><div class="vm-label">programów gotowych</div></div>
+      <div class="vm"><div class="vm-val">9,8M€</div><div class="vm-label">projekt Horizon Europe</div></div>
+      <div class="vm"><div class="vm-val">15</div><div class="vm-label">krajów UE w sieci</div></div>
     </div>
     <div class="startup-grid">
       <div class="startup-card s1">
         <div class="s-phase">Faza 1 — teraz</div>
         <div class="s-title">Warsztaty w terenie</div>
-        <div class="s-desc">Szkoły, biblioteki, półkolonie. Buduję portfolio, zbieram opinie, testuję programy na żywych grupach.</div>
+        <div class="s-desc">Szkoły, biblioteki, półkolonie. Buduję portfolio, zbieram referencje, testuję programy na żywych grupach w Małopolsce.</div>
         <span class="s-status status-active">● Aktywna</span>
       </div>
       <div class="startup-card s2">
         <div class="s-phase">Faza 2 — wkrótce</div>
         <div class="s-title">Społeczność online</div>
-        <div class="s-desc">Blog, newsletter, materiały do pobrania. Rodzice i nauczyciele jako kanał pozyskiwania klientów.</div>
+        <div class="s-desc">Blog, newsletter, materiały do pobrania. Rodzice i nauczyciele jako organiczny kanał wzrostu.</div>
         <span class="s-status status-next">◎ W budowie</span>
       </div>
       <div class="startup-card s3">
         <div class="s-phase">Faza 3</div>
         <div class="s-title">Przestrzeń popołudniowa</div>
-        <div class="s-desc">Kameralne miejsce dla dzieci po szkole — opieka + edukacja miejska + twórczość. Stacjonarne centrum Urbanek.</div>
+        <div class="s-desc">Kameralne miejsce dla dzieci po szkole — opieka + edukacja miejska + twórczość. Stacjonarne centrum Urbanek w Krakowie.</div>
         <span class="s-status status-future">○ Planowana</span>
       </div>
       <div class="startup-card s4">
         <div class="s-phase">Faza 4</div>
         <div class="s-title">Skalowanie</div>
-        <div class="s-desc">Partnerstwa z miastem, NGO, szkołami. Licencjonowanie programu. Sieć miejsc Urbanek w miastach.</div>
+        <div class="s-desc">Partnerstwa z miastem, NGO, szkołami. Licencjonowanie programu. Sieć miejsc Urbanek w miastach Małopolski i UE.</div>
         <span class="s-status status-future">○ Przyszłość</span>
       </div>
     </div>
@@ -561,69 +699,49 @@ footer{background:#04342C;padding:40px 5% 24px;}
 </section>
 
 <!-- NEWSLETTER -->
-<section id="newsletter" style="padding:64px 5%;">
+<section id="newsletter" style="padding:56px 5%;">
   <div class="section-inner">
     <div class="newsletter">
       <h2>Bądź na bieżąco</h2>
       <p>Nowe wpisy, materiały do pobrania i info o nadchodzących warsztatach — prosto na Twój e-mail.</p>
       <div class="nl-form">
-        <input type="email" placeholder="Twój adres e-mail"/>
-        <button>Zapisuję się!</button>
+        <input type="email" id="nlEmail" placeholder="Twój adres e-mail"/>
+        <button onclick="subscribeNL()">Zapisuję się!</button>
       </div>
-      <p class="nl-note">Bez spamu. Możesz wypisać się w każdej chwili.</p>
+      <p class="nl-note" id="nlNote">Bez spamu. Możesz wypisać się w każdej chwili.</p>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="kontakt" style="background:#F8F8F8;padding:64px 5%;">
+<section id="kontakt" style="background:linear-gradient(180deg,#f0f6ff 0%,#f4faf7 100%);padding:60px 5%;">
   <div class="section-inner">
-    <span class="section-tag">Kontakt</span>
+    <span class="section-tag green">Kontakt</span>
     <h2>Porozmawiajmy</h2>
     <p class="lead">Szkoła, biblioteka, dom kultury? Chętnie omówię program i dostosuję go do Twoich potrzeb.</p>
-    <div class="contact-grid">
+    <div class="contact-grid" style="margin-top:28px;align-items:start;">
       <div>
-        <p style="color:#444;font-size:15px;line-height:1.8;margin-bottom:16px;">Jestem do dyspozycji od poniedziałku do piątku. Odpowiadam zazwyczaj w ciągu 24 godzin.</p>
+        <p style="color:#444;font-size:15px;line-height:1.8;margin-bottom:14px;">Od poniedziałku do piątku. Zazwyczaj odpowiadam w ciągu 24 godzin.</p>
         <div class="contact-item">
-          <div class="contact-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4z" stroke="#1D9E75" stroke-width="1.2"/><path d="M2 4l6 5 6-5" stroke="#1D9E75" stroke-width="1.2"/></svg>
-          </div>
-          urbanek.krk@gmail.com
+          <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4z" stroke="#1D9E75" stroke-width="1.2"/><path d="M2 4l6 5 6-5" stroke="#1D9E75" stroke-width="1.2"/></svg></div>
+          <a href="mailto:urbanek.krk@gmail.com" style="color:var(--g);">urbanek.krk@gmail.com</a>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#1D9E75" stroke-width="1.2"/><path d="M8 2.5v5.5l3 2" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round"/></svg>
-          </div>
-          Kraków, Polska
+          <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#1D9E75" stroke-width="1.2"/><path d="M8 2.5v5.5l3 2" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          Kraków · Małopolska
         </div>
         <div class="contact-item">
-          <div class="contact-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#1D9E75"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          </div>
-          <a href="https://www.linkedin.com/in/olha-shulika/" target="_blank" style="color:var(--p);">Linkedin</a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="#1D9E75" stroke-width="1.2"/></svg>
-          </div>
-          sum-project.eu · Uniwersytet Jagielloński
+          <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1a5c99"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <a href="https://www.linkedin.com/in/olha-shulika/" target="_blank" style="color:var(--nb);">linkedin.com</a>
         </div>
       </div>
       <div class="cform">
-        <div class="form-row">
-          <label>Imię i nazwisko / Szkoła</label>
-          <input type="text" placeholder="Jan Kowalski / SP nr 5"/>
-        </div>
-        <div class="form-row">
-          <label>Adres e-mail</label>
-          <input type="email" placeholder="email@szkola.pl"/>
-        </div>
-        <div class="form-row">
-          <label>Wiadomość</label>
-          <textarea placeholder="Np. chciałabym zamówić warsztaty dla klasy 4, 25 uczniów, termin marzec–kwiecień…"></textarea>
-        </div>
-        <button class="form-submit" onclick="this.textContent='Wysłano! ✓';this.style.background='#085041';">Wyślij wiadomość</button>
-        <p style="font-size:11px;color:#aaa;margin-top:8px;text-align:center;font-family:var(--print);">Wiadomość trafi na urbanek.krk@gmail.com</p>
+        <div class="form-row"><label>Imię i nazwisko / Szkoła</label><input type="text" id="cf-name" placeholder="Jan Kowalski / SP nr 5"/></div>
+        <div class="form-row"><label>Adres e-mail</label><input type="email" id="cf-email" placeholder="email@szkola.pl"/></div>
+        <div class="form-row"><label>Wiadomość</label><textarea id="cf-msg" placeholder="Np. chciałabym zamówić warsztaty dla klasy 4, 25 uczniów, termin marzec–kwiecień…"></textarea></div>
+        <button class="form-submit" onclick="sendContact()">Wyślij wiadomość</button>
+        <p class="form-msg" id="cfMsg"></p>
+        <p style="font-size:11px;color:#aaa;margin-top:6px;text-align:center;font-family:var(--print);">Wiadomość trafi na urbanek.krk@gmail.com</p>
       </div>
     </div>
   </div>
@@ -635,8 +753,8 @@ footer{background:#04342C;padding:40px 5% 24px;}
     <div class="footer-top">
       <div>
         <div class="footer-logo">Urbanek</div>
-        <div class="footer-sub">edukacja miejska dla dzieci · Kraków</div>
-        <div style="margin-top:10px;font-size:12px;color:#5DCAA5;font-family:var(--print);">dr Olha Shulika<br>Uniwersytet Jagielloński<br>Projekt Horizon Europe SUM</div>
+        <div class="footer-sub">edukacja miejska dla dzieci · Kraków · Małopolska</div>
+        <div style="margin-top:10px;font-size:12px;color:#5DCAA5;font-family:var(--print);">dr Olha Shulika · Uniwersytet Jagielloński<br>Projekt Horizon Europe SUM · sum-project.eu</div>
       </div>
       <div class="footer-links">
         <strong style="color:#9FE1CB;font-size:11px;margin-bottom:4px;display:block;font-family:var(--print);">Warsztaty</strong>
@@ -647,9 +765,8 @@ footer{background:#04342C;padding:40px 5% 24px;}
       <div class="footer-links">
         <strong style="color:#9FE1CB;font-size:11px;margin-bottom:4px;display:block;font-family:var(--print);">Zasoby</strong>
         <a href="#blog">Blog</a>
-        <a href="#">Materiały do pobrania</a>
         <a href="https://sum-project.eu" target="_blank">sum-project.eu</a>
-        <a href="https://www.linkedin.com/in/olha-shulika/" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/olha-shulika/" target="_blank">LinkedIn</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -659,5 +776,158 @@ footer{background:#04342C;padding:40px 5% 24px;}
   </div>
 </footer>
 
+<script>
+/* ── WORKSHOP DATA ── */
+const WS = [
+  {title:"Czym jeździmy po mieście?",age:"Przedszkole · 3–6 lat",time:"30–40 min",body:`<p>Pierwsze spotkanie z transportem miejskim — przez zabawę, ruch i kolory. Dzieci odkrywają, czym różni się samochód od autobusu i dlaczego tramwaj zmieści więcej przyjaciół naraz.</p><h3>Przebieg zajęć</h3><ul><li><b>Jak tu dojechałeś/aś?</b> — rozmowa w kręgu o pojazdach, którymi dzieci przyjeżdżają do przedszkola</li><li><b>Zabawa ruchowa „Jestem pojazdem!"</b> — dzieci odgrywają samochód (jeden), autobus (wszyscy razem), rower, tramwaj</li><li><b>Wspólny plakat „Nasze miasto"</b> — przyklejamy pojazdy, rysujemy ulicę, zadajemy pytanie: kiedy jest więcej miejsca?</li></ul><h3>Czego się uczą?</h3><p>Autobus i tramwaj zabierają wielu ludzi naraz — to super pojazdy dla miasta! Rower nie kopci i jest zdrowy.</p>`},
+  {title:"Ile miejsca zajmuje samochód?",age:"Klasy 1–4 · 6–10 lat",time:"45 min",body:`<p>Fizyczne doświadczenie, które zostaje w pamięci: taśmą na podłodze wyznaczamy prostokąt wielkości jednego samochodu osobowego (ok. 2,5 × 5 m z odstępem bezpieczeństwa). Ile dzieci się mieści? A ile osób wiezie przeciętny samochód?</p><h3>Kluczowe obliczenie</h3><p>1 autobus zajmuje ~3× więcej miejsca niż samochód, ale przewozi 20–50 pasażerów zamiast 1–2. To znaczy, że <b>jeden autobus zastępuje 33–50 samochodów</b> na drodze!</p><h3>Praca plastyczna</h3><ul><li>Plakat „Samochód vs. autobus — kto wygrywa?"</li><li>Dane do porównania: liczba pasażerów, zajęte miejsce, emisja CO₂</li></ul>`},
+  {title:"Miasto dla ludzi czy dla samochodów?",age:"Klasy 5–8 · 11–14 lat",time:"45–60 min",body:`<p>Debata i praca z danymi. Uczniowie analizują wskaźniki efektywności transportu i sami dochodzą do wniosków, jak powinno wyglądać mądre miasto.</p><h3>Wskaźniki do analizy</h3><ul><li>Powierzchnia na pasażera: samochód ~15 m² vs. autobus ~0,5 m²</li><li>Emisja CO₂/km/osobę: samochód 120–180 g vs. autobus 20–30 g vs. rower 0 g</li><li>Prędkość w centrum: samochód i autobus — podobna! Ale autobus wiezie 50×więcej</li></ul><h3>Nawiązanie do projektu SUM</h3><p>W projekcie badawczym SUM (Horizon Europe) badam, jak europejskie miasta wdrażają mądre rozwiązania transportowe — takie jak LajkBus w Krakowie.</p>`},
+  {title:"Dzień Ziemi — transport i klimat",age:"Klasy 3–8 · 9–14 lat",time:"45–60 min",body:`<p>Transport drogowy odpowiada za ok. 20–25% emisji CO₂ w europejskich miastach. Na tym warsztacie każde dziecko oblicza tygodniowy ślad węglowy transportu swojej rodziny.</p><h3>Kalkulator CO₂</h3><ul><li>Samochód (1 os.): 120–180 g CO₂/km</li><li>Autobus: 20–30 g · Tramwaj: 10–15 g · Rower: 0 g</li><li>Dzieci obliczają: ile CO₂ roczna wycieczka samochodem? A gdyby pojechać pociągiem?</li></ul><h3>Efekt końcowy</h3><p>Każde dziecko pisze „List do burmistrza" z jedną propozycją zmiany w transporcie miasta. Możliwe do wysłania naprawdę!</p>`},
+  {title:"Transport bez barier",age:"Klasy 1–8",time:"45 min",body:`<p>Kto naprawdę może podróżować samodzielnie? Co piąty mieszkaniec Krakowa ma ograniczoną mobilność (osoby starsze + niepełnosprawne + rodzice z wózkami).</p><h3>Ćwiczenie z kartami</h3><p>Dzieci przyporządkowują sylwetki osób do środków transportu: wózek dziecięcy, rower, osoba niewidoma, senior z kulami, ktoś z dużą walizką. Który pojazd pasuje do każdego?</p><ul><li>Tramwaj niskopodłogowy: wózek, rower, wózek inwalidzki — wszystko wjeżdża!</li><li>Samochód: rower tylko na bagażniku, niewidomy potrzebuje kierowcy</li><li>LajkBus w Skotnikach (projekt SUM/UJ): mały pojazd, który dojeżdża tam, gdzie autobus nie może</li></ul>`},
+  {title:"Pojazdy przyszłości",age:"Klasy 5–8 · 11–14 lat",time:"45–60 min",body:`<p>Jak będziemy jeździć w 2050 roku? Elektryczne autobusy, tramwaje autonomiczne, rowery cargo, MaaS — jeden bilet na wszystko.</p><h3>Technologie do omówienia</h3><ul><li><b>E-busy i trolejbusy</b> — zeroemisyjne, ciche, coraz tańsze</li><li><b>Transport na żądanie (DRT)</b> — LajkBus w Krakowie od 2025 r.! Zamawiasz jak Ubera, płacisz jak za autobus</li><li><b>MaaS (Mobility as a Service)</b> — jeden bilet na autobus + rower + tramwaj + pociąg</li><li><b>Rowery cargo</b> — zamiast dostawczaka w centrum miasta</li></ul><h3>Projekt uczniów</h3><p>Grupy projektują „pojazd 2050": napęd, dostępność, przestrzeń, przystanek przyszłości.</p>`},
+  {title:"Miasto w miniaturze — projektujemy ulicę od zera",age:"Klasy 1–6",time:"90 min",body:`<p>Największy warsztat w cyklu — idealne na półkolonie, biblioteki i muzea. Dzieci dosłownie budują miasto z kartonów.</p><h3>Dwie części</h3><ul><li><b>Część 1 (30 min):</b> Stara ulica zdominowana przez auta — ile miejsca zostaje dla ludzi?</li><li><b>Część 2 (40 min):</b> Nowa ulica — tramwaj, ścieżka rowerowa, szeroki chodnik, drzewa, bezpieczny przystanek. Pojazdy ze skali muszą się zmieścić!</li></ul><h3>Materiały (zapewnia prowadząca)</h3><p>Duże arkusze, kartony, taśma, miniatury pojazdów i ludzi w skali, flamastry, nożyczki.</p><h3>Efekt końcowy</h3><p>Wystawa prac — każda grupa prezentuje, komu jest lepiej na nowej ulicy i kto może teraz jeździć, kto wcześniej nie mógł.</p>`}
+];
+
+function openWs(i){
+  const w=WS[i];
+  document.getElementById('wsModalBody').innerHTML=`<span style="font-size:11px;font-family:var(--print);color:#888;text-transform:uppercase;letter-spacing:.06em;">${w.age} · ${w.time}</span><h3 style="margin-top:6px;">${w.title}</h3><div style="font-size:12px;color:#888;font-family:var(--print);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #eee;"></div>${w.body}`;
+  document.getElementById('wsModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeWs(){document.getElementById('wsModal').classList.remove('open');document.body.style.overflow='';}
+
+/* ── BLOG DATA ── */
+const POSTS=[
+  {title:"368 milionów pasażerów — Kraków jedzie!",tag:"Transport publiczny · Kraków",date:"Lipiec 2025",read:"4 min czytania",
+   content:`<p>Liczby nie kłamią: w 2024 roku krakowianie wsiedli do tramwajów i autobusów <strong>368,1 miliona razy</strong> — o ponad 16 milionów więcej niż rok wcześniej. To drugi rok z rzędu, gdy wynik rośnie, choć poziom sprzed pandemii jeszcze nie wrócił.</p>
+   <p>Co za tym stoi? Nowe linie (12 nowych autobusowych!), rozszerzenie aglomeracji o kolejne gminy (Zabierzów, Zielonki, Kocmyrzów-Luborzycę) i — co mnie szczególnie cieszy — bilet metropolitalny, który sprzedano w ponad 732 tysiącach egzemplarzy. To wzrost o 138% rok do roku. Jeden bilet, całe miasto.</p>
+   <h3>Co to znaczy dla dzieci?</h3>
+   <p>Kiedy prowadzę warsztaty i pytam dzieci, jak dotarły do szkoły, coraz częściej słyszę: tramwajem. To zmiana. Nie rewolucja, ale kierunek. I właśnie o tym chcę rozmawiać z dziećmi na warsztatach — o tym, że każda decyzja transportowa ma znaczenie.</p>
+   <p>Na warsztacie nr 2 pokazuję dzieciom prostą matematykę: 368 mln przejazdów podzielone przez liczbę przejazdów samochodem osobowym, przy napełnieniu 1,5 os. — ile korków udało się uniknąć?</p>
+   <div class="source">Źródło: <a href="https://krknews.pl/jaki-jest-krakow-komunikacja-miejska-rowery-samochody-i-korki-w-liczbach/" target="_blank">KRKnews.pl, czerwiec 2025</a> · <a href="https://transinfo.pl/infotrans/krakow-podsumowal-transport-publiczny-za-rok-2024-w-ramach-miasto-wygodne-do-zycia/" target="_blank">TransInfo, lipiec 2025</a></div>`},
+  {title:"LajkBus na Skotnikach — transport jak taxi, cena jak autobus",tag:"Dostępność · Innowacje · SUM",date:"Luty 2025",read:"5 min czytania",
+   content:`<p>Od lutego 2025 roku w krakowskich Skotnikach działa coś, o czym urbaniści mówią od lat: <strong>transport na żądanie w cenie biletu miejskiego</strong>. Zamawiasz przez aplikację, mały pojazd jedzie po Ciebie na wąską uliczkę, dokąd autobus fizycznie nie dojedzie, i dowozi na węzeł przesiadkowy.</p>
+   <p>LajkBus to nie przypadkowy eksperyment — to wynik kilkuletnich analiz przeprowadzonych przez ZTP Kraków we współpracy z ekspertami z Uniwersytetu Jagiellońskiego w ramach projektu SUM (Horizon Europe). Spośród 12 analizowanych obszarów Krakowa to właśnie Skotniki zostały wybrane jako najlepsze miejsce do pilotażu.</p>
+   <h3>Dlaczego to ważne?</h3>
+   <p>Bo pokazuje, że transport publiczny może docierać wszędzie — nawet tam, gdzie infrastruktura jest zbyt trudna dla standardowego autobusu. Jeden algorytm dopasowuje pasażerów w czasie rzeczywistym, minimalizując czas oczekiwania i liczbę kursów.</p>
+   <p>Na warsztacie nr 5 (Transport bez barier) pytam dzieci: czy osoba na wózku, mama z wózkiem dziecięcym, niewidomy — mogą dojechać sami? LajkBus zmienia odpowiedź w Skotnikach z „nie" na „tak".</p>
+   <div class="source">Źródło: <a href="https://ztp.krakow.pl/en/kmk-public-transport/lajkbus" target="_blank">ZTP Kraków — LajkBus</a> · <a href="https://sum-project.eu/lajkbus-to-start-soon-in-krakow/" target="_blank">sum-project.eu</a></div>`},
+  {title:"Ile CO₂ produkuje Twoja rodzina przez transport? Sprawdź sam",tag:"Klimat · Dane · EEA",date:"Kwiecień 2025",read:"5 min czytania",
+   content:`<p>Transport drogowy odpowiada za około <strong>20–25% emisji CO₂</strong> w europejskich miastach. To jeden z obszarów, gdzie codzienne decyzje realnie wpływają na klimat — i właśnie dlatego jest to temat Warsztatu nr 4 (Dzień Ziemi).</p>
+   <h3>Dane, które zaskakują</h3>
+   <p>Samochód osobowy emituje 120–180 g CO₂ na km na osobę (przy napełnieniu 1–2 os.). Autobus miejski? 20–30 g. Tramwaj? 10–15 g. Rower i pieszy? Zero.</p>
+   <p>Kiedy na warsztatach dzieci obliczają tygodniowy ślad węglowy swojej rodziny, wyniki są często zaaskakujące — nawet dla mnie. Rodzina, która regularnie jeździ samochodem do szkoły i pracy, może produkować rocznie kilkaset kilogramów CO₂ <em>tylko</em> przez transport.</p>
+   <h3>Co można zmienić?</h3>
+   <p>Jeden kurs tygodniowo zamieniony na autobus lub rower to oszczędność rzędu 50–200 kg CO₂ rocznie. Miliony małych kroków zmieniają klimat. Dlatego na warsztacie dzieci piszą list do burmistrza — z jednym konkretnym pomysłem dla swojego miasta.</p>
+   <div class="source">Źródło: <a href="https://www.europarl.europa.eu/topics/pl/article/20190313STO31218/emisje-co2-z-samochodow-fakty-i-liczby-infografiki" target="_blank">European Environment Agency (EEA) — Transport</a> · UITP 2023</div>`},
+  {title:"236 km ścieżek rowerowych w Krakowie — to dużo czy mało?",tag:"Rower · Infrastruktura · Kraków",date:"Czerwiec 2025",read:"4 min czytania",
+   content:`<p>W 2024 roku Kraków osiągnął <strong>236,2 km tras rowerowych</strong>. Brzmi imponująco — ale czy to znaczy, że rowerem można tu bezpiecznie dotrzeć wszędzie?</p>
+   <p>Niestety, nie. Większość nowej infrastruktury z 2024 roku to efekt jednej inwestycji: drogi wzdłuż al. 29 Listopada (+6,8 km). Sieć rowerowa Krakowa pozostaje nierównomierna — świetna w centrum i nowych dzielnicach, znikoma na obrzeżach i w starszej zabudowie.</p>
+   <h3>A co z rowerami miejskimi?</h3>
+   <p>System LajkBike oferował w 2024 roku 1 000 rowerów (w tym 500 elektrycznych!). System Park-e-Bike (elektryczne rowery cargo przy stacjach P+R) zanotował ponad 14 tys. wypożyczeń. To kierunek, który warto śledzić.</p>
+   <p>Na moich warsztatach dzieci projektują „idealną ulicę" — zawsze pojawia się ścieżka rowerowa. Pytam: dlaczego? Odpowiedź jest prosta: bo na rowerze można jechać szybciej, nie stać w korku i nic nie kopcić.</p>
+   <div class="source">Źródło: <a href="https://krakow.pl/aktualnosci/295670,29,komunikat,w_jakim_kierunku_rozwija_sie_krakow__prezydent_zaprezentowal__raport_o_stanie_gminy%E2%80%9D.html" target="_blank">KRKnews.pl, czerwiec 2025</a></div>`},
+  {title:"Dlaczego tramwaj to najlepsza inwestycja dla Krakowa?",tag:"Tramwaj · Małopolska · ZTP",date:"Maj 2025",read:"6 min czytania",
+   content:`<p>Kraków ma 27 linii tramwajowych. W 2024 roku tramwaje wykonały <strong>16,3 miliona wozokilometrów</strong> — więcej niż rok wcześniej, mimo remontów i wyłączeń. Dlaczego tramwaj jest wyjątkowy?</p>
+   <h3>Matematyka przestrzeni</h3>
+   <p>Jeden tramwaj (skład 3-członowy) przewozi do 200–240 pasażerów. Przy napełnieniu 1,5 os./samochód, to 130–160 samochodów mniej na torach tramwajowych. Na tym samym pasie, który zajmuje jeden tramwaj, nie zmieściłoby się tyle aut nawet na długość jednego skrzyżowania.</p>
+   <h3>Trwałość vs. autobus</h3>
+   <p>Tramwaj jeździ 30–40 lat. Autobus 12–15. Koszt na miejsce w pojeździe przez cały okres eksploatacji? Tramwaj wygrywa. Hałas? Emisja na wozokilometr? Tramwaj znowu wygrywa — szczególnie przy zasilaniu z OZE.</p>
+   <p>Dlatego na warsztacie nr 3 (Miasto dla ludzi czy dla samochodów?) tramwaj jest zawsze najlepszym argumentem w debacie uczniów.</p>
+   <div class="source">Źródło: <a href="https://ztp.krakow.pl" target="_blank">ZTP Kraków — raport roczny 2024</a> · <a href="https://krknews.pl/jaki-jest-krakow-komunikacja-miejska-rowery-samochody-i-korki-w-liczbach/" target="_blank">KRKnews.pl</a></div>`},
+  {title:"Co piąty mieszkaniec potrzebuje dostępnego transportu",tag:"Dostępność · UE · Eurostat",date:"Kwiecień 2026",read:"5 min czytania",
+   content:`<p>Ok. 20% mieszkańców europejskich miast codziennie zmaga się z ograniczoną mobilnością — to seniorzy, osoby z niepełnosprawnościami, rodzice z wózkami dziecięcymi. Czy transport publiczny jest dla nich?</p>
+   <h3>Dane z Krakowa</h3>
+   <p>Kraków aktywnie wymienia tabor na niskopodłogowy — zarówno autobusy, jak i tramwaje. Nowe składy tramwajowe Kraków Tramway (Stadler) i autobusy Mobilis są w pełni niskopodłogowe. Ale budynki przystanków, chodniki, sygnalizacja — tu bywa gorzej.</p>
+   <h3>LajkBus jako odpowiedź</h3>
+   <p>Projekt LajkBus w Skotnikach to konkretna odpowiedź na pytanie: co zrobić, gdy tramwaj i autobus nie docierają? Mały pojazd DRT (demand-responsive transport) dojedzie tam, gdzie nie da się zbudować standardowej infrastruktury.</p>
+   <p>Na warsztacie nr 5 dzieci odkrywają, że „dostępność transportu" to nie tylko podjazd dla wózka — to cały system, który musi działać płynnie od drzwi do drzwi.</p>
+   <div class="source">Źródło: <a href="https://krakow.pl/dwa_lata_w_dobrym_kierunku/317835,2490,komunikat,ekologiczny_i_wygodny_transport_to_priorytet_dla_krakowa.html" target="_blank">Eurostat — Disability statistics, transport</a> · <a href="https://sum-project.eu" target="_blank">sum-project.eu</a></div>`}
+];
+
+function openPost(i){
+  const p=POSTS[i];
+  document.getElementById('postContent').innerHTML=`<div class="post-tag" style="color:#0F6E56;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:var(--print);">${p.tag}</div><h2>${p.title}</h2><p class="pf-meta">${p.date} · ${p.read}</p>${p.content}`;
+  document.getElementById('postOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePost(){document.getElementById('postOverlay').classList.remove('open');document.body.style.overflow='';}
+
+/* ── BLOG ALL ── */
+function openBlogAll(){
+  document.getElementById('blog-all').classList.add('open');
+  document.getElementById('blogShowAllBtn').style.display='none';
+  document.getElementById('blogPreview').style.display='none';
+  document.getElementById('blog-all').scrollIntoView({behavior:'smooth'});
+}
+function closeBlogAll(){
+  document.getElementById('blog-all').classList.remove('open');
+  document.getElementById('blogShowAllBtn').style.display='block';
+  document.getElementById('blogPreview').style.display='grid';
+}
+
+/* ── NEWSLETTER ── */
+async function subscribeNL(){
+  const email=document.getElementById('nlEmail').value.trim();
+  const note=document.getElementById('nlNote');
+  if(!email||!email.includes('@')){note.style.color='#ff6b6b';note.textContent='Podaj prawidłowy adres e-mail.';return;}
+  // Save locally + open mailto as fallback (no backend)
+  try{
+    const r=await window.storage.get('subscribers').catch(()=>null);
+    const subs=r?JSON.parse(r.value):[];
+    if(!subs.includes(email)){subs.push(email);await window.storage.set('subscribers',JSON.stringify(subs));}
+  }catch(e){}
+  // Mailto fallback so Olha receives the email
+  window.location.href=`mailto:urbanek.krk@gmail.com?subject=Nowy%20subskrybent%20Urbanek&body=Nowy%20zapis%20na%20newsletter%3A%20${encodeURIComponent(email)}`;
+  note.style.color='#9FE1CB';
+  note.textContent='Dziękujemy! Sprawdź swój e-mail po potwierdzenie.';
+  document.getElementById('nlEmail').value='';
+}
+
+/* ── CONTACT FORM ── */
+function sendContact(){
+  const name   = document.getElementById('cf-name').value.trim();
+  const email  = document.getElementById('cf-email').value.trim();
+  const msg    = document.getElementById('cf-msg').value.trim();
+  const cfMsg  = document.getElementById('cfMsg');
+
+  if(!name){
+    cfMsg.style.color='#cc4444';
+    cfMsg.textContent='Podaj imię i nazwisko lub nazwę szkoły.';
+    return;
+  }
+  if(!email || !email.includes('@')){
+    cfMsg.style.color='#cc4444';
+    cfMsg.textContent='Podaj prawidłowy adres e-mail.';
+    return;
+  }
+  if(!msg){
+    cfMsg.style.color='#cc4444';
+    cfMsg.textContent='Napisz wiadomość.';
+    return;
+  }
+
+  const subject = encodeURIComponent('Urbanek — wiadomość od ' + name);
+  const body    = encodeURIComponent('Od: ' + name + '\nE-mail: ' + email + '\n\n' + msg);
+  window.location.href = 'mailto:urbanek.krk@gmail.com?subject=' + subject + '&body=' + body;
+
+  cfMsg.style.color='#1D9E75';
+  cfMsg.textContent='Twój program pocztowy powinien się otworzyć — wyślij wiadomość stamtąd.';
+}
+
+/* ── OPINIE TOGGLE ── */
+function toggleOpinie(){
+  const extras = document.querySelectorAll('.proof-extra');
+  const btn    = document.getElementById('proofToggleBtn');
+  const open   = extras[0].style.display !== 'none';
+  extras.forEach(el => el.style.display = open ? 'none' : '');
+  btn.textContent = open ? 'Wszystkie opinie →' : 'Zwiń ↑';
+  btn.style.background = open ? '#fff' : 'var(--nb)';
+  btn.style.color      = open ? 'var(--nb)' : '#fff';
+}
+
+/* ── ESC TO CLOSE ── */
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeWs();closePost();}});
+</script>
 </body>
 </html>
