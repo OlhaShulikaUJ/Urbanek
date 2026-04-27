@@ -26,6 +26,24 @@ html{scroll-behavior:smooth;}
 body{font-family:'Inter',system-ui,sans-serif;color:#1a1a1a;background:#ffffff;line-height:1.6;}
 a{color:inherit;text-decoration:none;}
 img{max-width:100%;}
+  .logo-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:8px;
+}
+
+.logo-row img{
+  height:55px;
+  object-fit:contain;
+  filter:grayscale(20%);
+  transition:transform 0.2s ease;
+}
+
+.logo-row img:hover{
+  transform:scale(1.1);
+}
 :root{
   --g:#1D9E75;--gd:#085041;--gl:#E1F5EE;
   --p:#1a5c99;--pl:#ddeeff;
@@ -398,7 +416,20 @@ footer{background:#04342C;padding:36px 5% 20px;}
         <div class="about-name">dr Olha Shulika</div>
         <div class="about-role">Ekspertka ds. mobilności miejskiej</div>
         <div class="tag-row">
-          <span class="tag">Doświadczenie: Polska (UJ, PK) / Ukraina (KhNAHU, Uzhnu)</span>
+          <div class="logo-row">
+  	   <a href="https://www.uj.edu.pl/" target="_blank">
+    		<img src="UJ.png" alt="UJ" />
+  	   </a>
+  	   <a href="https://www.pk.edu.pl/" target="_blank">
+    		<img src="PK.png" alt="PK" />
+  	   </a>
+  	   <a href="https://www.uzhnu.edu.ua/" target="_blank">
+    		<img src="Uzhnu.png" alt="UzhNU" />
+  	   </a>
+  	   <a href="https://www.khadi.kharkov.ua/" target="_blank">
+    		<img src="KhNAHU.png" alt="KhNAHU" />
+  	   </a>
+	</div>
           <span class="tag">10+ lat doświadczenia badawczego</span>
         </div>
         <div class="proj-badge">
@@ -431,6 +462,7 @@ footer{background:#04342C;padding:36px 5% 20px;}
     </div>
   </div>
 </section>
+
 
 <!-- WORKSHOPS -->
 <section id="warsztaty" style="background:linear-gradient(180deg,#f0f6ff 0%,#f4faf7 100%);">
