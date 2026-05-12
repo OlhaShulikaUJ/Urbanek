@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certyfikaty Urbanek</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #d6d2c8;
+  font-family: 'DM Sans', sans-serif;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+h1.section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
+  text-align: center;
+  margin-bottom: -44px;
+}
+
+/* ── A4 landscape = 1123 × 794 px at 96dpi ── */
+.cert {
+  width: 1123px;
+  height: 794px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 60px rgba(0,0,0,0.22);
+  background: #FDFCF8;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── decorative border frame ── */
+.cert-frame {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(8,80,65,0.18);
+  pointer-events: none;
+  z-index: 10;
+}
+.cert-frame::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 0.5px solid rgba(255,215,0,0.35);
+}
+
+/* corner ornaments */
+.corner {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  z-index: 11;
+  pointer-events: none;
+}
+.corner-tl { top: 14px; left: 14px; }
+.corner-tr { top: 14px; right: 14px; transform: scaleX(-1); }
+.corner-bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+.corner-br { bottom: 14px; right: 14px; transform: scale(-1); }
+
+/* ── accent stripe top ── */
+.cert-stripe {
+  height: 7px;
+  background: linear-gradient(90deg, #085041 0%, #1D9E75 55%, #FFD700 100%);
+  flex-shrink: 0;
+}
+
+/* ── background decorative elements ── */
+.bg-circle-1 {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #E1F5EE 0%, transparent 70%);
+  top: -160px; right: -160px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.bg-circle-2 {
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFF9E6 0%, transparent 70%);
+  bottom: -100px; left: -80px;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.bg-text {
+  position: absolute;
+  font-family: 'Caveat', cursive;
+  font-size: 220px;
+  font-weight: 700;
+  color: rgba(8,80,65,0.04);
+  bottom: -30px;
+  left: 30px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+  line-height: 1;
+}
+
+/* ── bus watermark ── */
+.bus-watermark {
+  position: absolute;
+  right: 40px;
+  bottom: 70px;
+  opacity: 0.055;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── main content layout ── */
+.cert-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 60px 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── top logos row ── */
+.logos-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+.logo-separator {
+  width: 1px;
+  height: 32px;
+  background: rgba(8,80,65,0.2);
+}
+.logo-urbanek {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-urbanek-text {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  font-weight: 700;
+  color: #085041;
+  line-height: 1;
+  letter-spacing: -0.3px;
+}
+.logo-urbanek-sub {
+  font-size: 10px;
+  color: #1a5c99;
+  font-family: 'DM Sans', sans-serif;
+  display: block;
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+
+/* ── centre content ── */
+.cert-centre {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.cert-type-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #1D9E75;
+  margin-bottom: 10px;
+}
+
+.cert-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: #085041;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.cert-awarded-to {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* recipient name line */
+.cert-name {
+  font-family: 'Caveat', cursive;
+  font-size: 54px;
+  font-weight: 700;
+  color: #0f1a12;
+  line-height: 1;
+  margin-bottom: 6px;
+  border-bottom: 2px solid #1D9E75;
+  padding-bottom: 4px;
+  min-width: 400px;
+  text-align: center;
+}
+.cert-name-placeholder {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 42px;
+  font-weight: 300;
+  color: #aaa;
+  letter-spacing: 0.05em;
+}
+
+.cert-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.55;
+  margin-top: 12px;
+  max-width: 640px;
+  font-style: italic;
+}
+.cert-desc strong {
+  font-style: normal;
+  font-weight: 600;
+  color: #085041;
+}
+
+/* workshop badge */
+.ws-badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 14px;
+}
+.ws-badge {
+  background: #E1F5EE;
+  border: 1px solid rgba(29,158,117,0.3);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #085041;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* ── bottom row: date | signature | place ── */
+.cert-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 0.5px solid rgba(8,80,65,0.15);
+}
+
+.sig-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.sig-img {
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+}
+.sig-line {
+  width: 180px;
+  height: 1px;
+  background: rgba(8,80,65,0.3);
+}
+.sig-label {
+  font-size: 10px;
+  color: #888;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.date-block {
+  text-align: left;
+}
+.date-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 4px;
+}
+.date-value {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 600;
+  color: #085041;
+}
+
+.place-block {
+  text-align: right;
+}
+.place-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 4px;
+}
+.place-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: #444;
+}
+
+/* ── INSTITUTION specific tweaks ── */
+.cert-inst .cert-title {
+  font-size: 46px;
+}
+.cert-inst .cert-name {
+  font-size: 40px;
+  min-width: 500px;
+}
+.cert-inst .cert-desc {
+  font-size: 15.5px;
+}
+
+/* ── accent dot ornament ── */
+.dot-ornament {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #FFD700;
+  border: 1.5px solid #DAA520;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+/* ── print ── */
+@page { size: A4 landscape; margin: 0; }
+@media print {
+  body { background: none; padding: 0; gap: 0; }
+  .cert { box-shadow: none; page-break-after: always; }
+  .section-label { display: none; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     CERTYFIKAT 1 — dla dziecka / uczestnika
+════════════════════════════════════════════ -->
+<p class="section-label">Certyfikat 1 — uczestnik (dziecko / osoba)</p>
+<div class="cert">
+  <div class="cert-stripe"></div>
+
+  <!-- BG decorations -->
+  <div class="bg-circle-1"></div>
+  <div class="bg-circle-2"></div>
+  <div class="bg-text">Urbanek</div>
+
+  <!-- bus watermark -->
+  <div class="bus-watermark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="320">
+      <rect x="50" y="100" width="300" height="120" rx="15" fill="#1D9E75"/>
+      <path d="M50 120 Q30 120 30 150 L30 200 Q30 220 50 220 Z" fill="#1D9E75"/>
+      <rect x="80" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="135" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="190" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="245" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="300" y="115" width="35" height="45" rx="5" fill="#085041"/>
+      <circle cx="120" cy="225" r="28" fill="#085041"/>
+      <circle cx="280" cy="225" r="28" fill="#085041"/>
+    </svg>
+  </div>
+
+  <!-- frame + corners -->
+  <div class="cert-frame"></div>
+  <svg class="corner corner-tl" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#1D9E75" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#FFD700"/></svg>
+  <svg class="corner corner-tr" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#1D9E75" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#FFD700"/></svg>
+  <svg class="corner corner-bl" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#1D9E75" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#FFD700"/></svg>
+  <svg class="corner corner-br" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#1D9E75" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#FFD700"/></svg>
+
+  <div class="cert-body">
+
+    <!-- LOGOS -->
+    <div class="logos-row">
+      <div class="logo-group">
+        <div class="logo-urbanek">
+          <!-- bus mark -->
+          <svg width="56" height="48" viewBox="0 0 38 28" fill="none">
+            <rect x="2" y="4" width="32" height="16" rx="5" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
+            <rect x="5" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+            <rect x="15" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+            <rect x="25" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+            <circle cx="10" cy="23" r="4" fill="#222" stroke="#111" stroke-width="1"/>
+            <circle cx="28" cy="23" r="4" fill="#222" stroke="#111" stroke-width="1"/>
+            <circle cx="10" cy="23" r="1.5" fill="#888"/>
+            <circle cx="28" cy="23" r="1.5" fill="#888"/>
+          </svg>
+          <div>
+            <span class="logo-urbanek-text">Urbanek</span>
+            <span class="logo-urbanek-sub">edukacja miejska dla dzieci</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-group">
+        <img src="UJ.png" alt="Uniwersytet Jagielloński" class="logo-img" style="height:76px;"
+             onerror="this.style.opacity='0.3'">
+        <div class="logo-separator"></div>
+        <img src="sum.png" alt="Horizon Europe" class="logo-img" style="height:76px;"
+             onerror="this.style.opacity='0.3';this.alt='SUM'">
+        <div class="logo-separator"></div>
+        <img src="eu.png" alt="Horizon Europe" class="logo-img" style="height:96px;"
+             onerror="this.style.opacity='0.3'">
+      </div>
+    </div>
+
+    <!-- CENTRE -->
+    <div class="cert-centre">
+      <div class="cert-type-label">Program edukacyjny <span class="dot-ornament"></span> Miasto w ruchu</div>
+      <div class="cert-title">CERTYFIKAT</div>
+      <div class="cert-awarded-to">zaświadcza, że</div>
+
+      <div class="cert-name">
+        <span class="cert-name-placeholder">Imię i Nazwisko dziecka</span>
+      </div>
+
+      <div class="cert-desc">
+        uczestniczył·a w warsztatach edukacyjnych z cyklu
+        <strong>„Miasto w ruchu"</strong> — programu edukacji miejskiej i zrównoważonego transportu
+        dla dzieci, prowadzonego przez <strong>dr Olhę Shulikę</strong>
+        (Uniwersytet Jagielloński).
+      </div>
+
+      <div class="ws-badge-row">
+        <span class="ws-badge">🚌 Transport miejski</span>
+        <span class="ws-badge">🌱 Zrównoważona mobilność</span>
+        <span class="ws-badge">🗺️ Edukacja miejska</span>
+        <span class="ws-badge">Kraków · Małopolska</span>
+      </div>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="cert-bottom">
+      <div class="date-block">
+        <div class="date-label">Data</div>
+        <div class="date-value">_________________ 2026</div>
+      </div>
+
+      <div class="sig-block">
+        <img src="sign1.png" alt="Podpis" class="sig-img"
+             onerror="this.style.opacity='0'">
+        <div class="sig-line"></div>
+        <div class="sig-label">dr Olha Shulika<br>prowadząca warsztaty</div>
+      </div>
+
+      <div class="place-block">
+        <div class="place-label">Miejsce</div>
+        <div class="place-value">Kraków, Małopolska</div>
+      </div>
+    </div>
+
+  </div><!-- /cert-body -->
+</div><!-- /cert 1 -->
+
+
+<!-- ══════════════════════════════════════════
+     CERTYFIKAT 2 — dla instytucji
+     (szkoła / przedszkole / biblioteka / DK)
+════════════════════════════════════════════ -->
+<p class="section-label">Certyfikat 2 — instytucja (szkoła / przedszkole / biblioteka / dom kultury)</p>
+<div class="cert cert-inst" style="background: linear-gradient(160deg, #FDFCF8 0%, #F4FAF7 100%);">
+  <div class="cert-stripe"></div>
+
+  <!-- BG decorations -->
+  <div class="bg-circle-1" style="background:radial-gradient(circle,#E1F5EE 0%,transparent 70%);opacity:0.5;"></div>
+  <div class="bg-circle-2" style="background:radial-gradient(circle,#FFFDE7 0%,transparent 70%);"></div>
+  <div class="bg-text" style="color:rgba(8,80,65,0.035);">Urbanek</div>
+
+  <!-- bus watermark -->
+  <div class="bus-watermark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="320">
+      <rect x="50" y="100" width="300" height="120" rx="15" fill="#1D9E75"/>
+      <path d="M50 120 Q30 120 30 150 L30 200 Q30 220 50 220 Z" fill="#1D9E75"/>
+      <rect x="80" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="135" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="190" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="245" y="115" width="40" height="45" rx="5" fill="#085041"/>
+      <rect x="300" y="115" width="35" height="45" rx="5" fill="#085041"/>
+      <circle cx="120" cy="225" r="28" fill="#085041"/>
+      <circle cx="280" cy="225" r="28" fill="#085041"/>
+    </svg>
+  </div>
+
+  <!-- frame + corners - gold variant -->
+  <div class="cert-frame" style="border-color:rgba(218,165,32,0.25);"></div>
+  <svg class="corner corner-tl" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#DAA520" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#1D9E75"/></svg>
+  <svg class="corner corner-tr" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#DAA520" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#1D9E75"/></svg>
+  <svg class="corner corner-bl" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#DAA520" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#1D9E75"/></svg>
+  <svg class="corner corner-br" viewBox="0 0 36 36"><path d="M2 34 L2 2 L34 2" fill="none" stroke="#DAA520" stroke-width="2"/><circle cx="2" cy="2" r="3" fill="#1D9E75"/></svg>
+
+  <div class="cert-body">
+
+    <!-- LOGOS -->
+    <div class="logos-row">
+      <div class="logo-group">
+        <div class="logo-urbanek">
+          <svg width="56" height="48" viewBox="0 0 38 28" fill="none">
+            <rect x="2" y="4" width="32" height="16" rx="5" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
+            <rect x="5" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+            <rect x="15" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+            <rect x="25" y="7" width="7" height="7" rx="2" fill="#ADD8E6" stroke="#4682B4" stroke-width="1"/>
+            <circle cx="10" cy="23" r="4" fill="#222" stroke="#111" stroke-width="1"/>
+            <circle cx="28" cy="23" r="4" fill="#222" stroke="#111" stroke-width="1"/>
+            <circle cx="10" cy="23" r="1.5" fill="#888"/>
+            <circle cx="28" cy="23" r="1.5" fill="#888"/>
+          </svg>
+          <div>
+            <span class="logo-urbanek-text">Urbanek</span>
+            <span class="logo-urbanek-sub">edukacja miejska dla dzieci</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-group">
+        <img src="UJ.png" alt="Uniwersytet Jagielloński" class="logo-img" style="height:76px;"
+             onerror="this.style.opacity='0.3'">
+        <div class="logo-separator"></div>
+        <img src="sum.png" alt="Horizon Europe" class="logo-img" style="height:76px;"
+             onerror="this.style.opacity='0.3';this.alt='SUM'">
+        <div class="logo-separator"></div>
+        <img src="eu.png" alt="Horizon Europe" class="logo-img" style="height:96px;"
+             onerror="this.style.opacity='0.3'">
+      </div>
+    </div>
+
+    <!-- CENTRE -->
+    <div class="cert-centre">
+      <div class="cert-type-label" style="color:#DAA520;letter-spacing:0.22em;">
+        Partnerstwo edukacyjne <span class="dot-ornament" style="background:#1D9E75;border-color:#085041;"></span> Miasto w ruchu
+      </div>
+      <div class="cert-title" style="font-size:44px;letter-spacing:0.08em;">CERTYFIKAT INSTYTUCJI</div>
+      <div class="cert-awarded-to">niniejszy certyfikat potwierdza, że</div>
+
+      <div class="cert-name" style="font-size:38px;min-width:520px;">
+        <span class="cert-name-placeholder">Nazwa szkoły / placówki</span>
+      </div>
+
+      <div class="cert-desc">
+        aktywnie uczestniczyła w realizacji programu edukacyjnego
+        <strong>„Miasto w ruchu"</strong> — cyklu warsztatów edukacji miejskiej
+        i zrównoważonego transportu dla dzieci, prowadzonego przez
+        <strong>dr Olhę Shulikę</strong>
+        (Uniwersytet Jagielloński)
+        w ramach projektu <strong>SUM — Seamless Shared Urban Mobility</strong> (Horizon Europe).
+      </div>
+
+      <div class="ws-badge-row">
+        <span class="ws-badge" style="background:#FFF9E6;border-color:rgba(218,165,32,0.35);color:#7a5800;">🏫 Partner edukacyjny</span>
+        <span class="ws-badge">🚌 Zrównoważony transport</span>
+        <span class="ws-badge">🌍 Horizon Europe · SUM</span>
+        <span class="ws-badge">Kraków · Małopolska · 2026</span>
+      </div>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="cert-bottom">
+      <div class="date-block">
+        <div class="date-label">Rok szkolny / Data</div>
+        <div class="date-value">2025 / 2026</div>
+      </div>
+
+      <div class="sig-block">
+        <img src="sign1.png" alt="Podpis" class="sig-img"
+             onerror="this.style.opacity='0'">
+        <div class="sig-line"></div>
+        <div class="sig-label">dr Olha Shulika<br>Uniwersytet Jagielloński</div>
+      </div>
+
+      <div class="place-block">
+        <div class="place-label">Wydany w</div>
+        <div class="place-value">Krakowie, Małopolska</div>
+      </div>
+    </div>
+
+  </div><!-- /cert-body -->
+</div><!-- /cert 2 -->
+
+<p style="text-align:center;font-size:11px;color:#aaa;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;margin-top:-30px;padding-bottom:20px;">
+  Aby wydrukować: Ctrl+P → rozmiar A4 poziomy (landscape) → marginesy: brak → Drukuj lub Zapisz jako PDF
+</p>
+
+</body>
+</html>
