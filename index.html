@@ -101,38 +101,104 @@ h2{font-family:var(--hand);font-size:clamp(24px,3.8vw,38px);font-weight:700;line
 /* ── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:clamp(260px,30%,340px) 1fr;gap:40px;align-items:start;margin-top:36px;}
 @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
-.about-card{background:var(--gl);border-radius:16px;padding:24px 20px;text-align:center;position:relative;border:2px solid var(--nb);}
-.about-card::before{content:'';position:absolute;inset:-6px;border-radius:20px;border:2px dashed rgba(26,92,153,0.2);pointer-events:none;}
-.avatar-img{width:90px;height:90px;border-radius:50%;background:var(--g);margin:0 auto 12px;border:3px solid var(--nb);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:30px;font-weight:700;color:#fff;}
+/* ── ABOUT CARD — redesigned ── */
+.about-card{
+  background:linear-gradient(175deg,#ffffff 0%,#f0faf6 100%);
+  border-radius:18px;padding:20px 16px 16px;text-align:center;
+  position:relative;border:none;
+  box-shadow:0 4px 24px rgba(8,80,65,0.10), 0 1px 4px rgba(8,80,65,0.06);
+}
+.about-card::before{display:none;}
+
+/* photo */
+.avatar-img{
+  width:88px;height:88px;border-radius:50%;
+  background:var(--g);margin:0 auto 10px;
+  border:3px solid #fff;
+  outline:2px solid var(--g);
+  outline-offset:2px;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  font-family:var(--hand);font-size:28px;font-weight:700;color:#fff;
+  box-shadow:0 3px 12px rgba(8,80,65,0.16);
+}
 .avatar-img img{width:100%;height:100%;object-fit:cover;}
-.about-name{font-family:var(--hand);font-size:21px;font-weight:700;color:var(--gd);}
-.about-role{font-size:12px;color:var(--g);margin-top:3px;font-family:var(--print);}
 
-.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;justify-content:center;}
-.tag{background:#fff;border:0.5px solid #9FE1CB;color:var(--gd);font-size:11px;padding:3px 9px;border-radius:12px;font-family:var(--print);}
+/* name & role */
+.about-name{
+  font-family:var(--hand);font-size:22px;font-weight:700;
+  color:var(--gd);line-height:1.1;letter-spacing:-0.3px;
+}
+.about-role{
+  font-size:11px;color:var(--g);margin-top:3px;
+  font-family:var(--print);letter-spacing:0.04em;font-weight:600;
+}
 
+/* experience tag */
+.tag-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;justify-content:center;}
+.tag{
+  background:linear-gradient(135deg,#E1F5EE,#d0f0e4);
+  border:none;color:var(--gd);font-size:10px;
+  padding:3px 9px;border-radius:20px;font-family:var(--print);
+  font-weight:600;letter-spacing:0.03em;
+}
+
+/* section label inside card */
+.about-card-label{
+  font-size:9.5px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:#bbb;
+  margin:12px 0 5px;font-family:var(--print);
+  text-align:left;
+}
 
 /* uni links */
-.uni-links{display:flex;flex-direction:column;gap:6px;margin-top:14px;width:100%;}
-.uni-link{display:flex;align-items:center;gap:9px;padding:7px 11px;border-radius:10px;background:#f0faf6;border:1.5px solid #9FE1CB;text-decoration:none;transition:background 0.18s,border-color 0.18s;}
-.uni-link:hover{background:var(--gl);border-color:var(--g);}
-.uni-link-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.uni-link-name{font-family:var(--hand);font-size:14px;font-weight:700;color:var(--gd);line-height:1.2;}
-.uni-link-country{font-family:var(--print);font-size:10px;color:#888;margin-left:auto;white-space:nowrap;}
+.uni-links{display:flex;flex-direction:column;gap:4px;width:100%;}
+.uni-link{
+  display:flex;align-items:center;gap:7px;
+  padding:5px 9px;border-radius:8px;
+  background:#fff;
+  border:1px solid #d6efe6;
+  text-decoration:none;
+  transition:background 0.16s,box-shadow 0.16s;
+  box-shadow:0 1px 3px rgba(8,80,65,0.04);
+}
+.uni-link:hover{background:#f0faf6;box-shadow:0 2px 8px rgba(8,80,65,0.10);}
+.uni-link-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.uni-link-name{
+  font-family:var(--hand);font-size:13px;font-weight:700;
+  color:var(--gd);line-height:1.2;flex:1;
+}
+.uni-link-country{margin-left:auto;white-space:nowrap;flex-shrink:0;}
 
 /* proj badges */
+.proj-badge{
+  display:flex;align-items:center;gap:9px;
+  background:#fff;border-radius:10px;
+  padding:8px 10px;margin-top:6px;
+  border:1px solid #d6efe6;
+  box-shadow:0 1px 3px rgba(8,80,65,0.04);
+  transition:box-shadow 0.16s;
+}
+.proj-badge:hover{box-shadow:0 3px 10px rgba(8,80,65,0.11);}
+.proj-badge-icon{width:30px;height:30px;background:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;flex-shrink:0;font-family:var(--hand);}
+.proj-badge-icon-eu{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,#003399,#0055cc);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 5px rgba(0,51,153,0.22);}
+.proj-badge-icon-ncn{width:30px;height:30px;border-radius:7px;background:#fff;border:2px solid #C0392B;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:10px;font-weight:700;color:#C0392B;flex-shrink:0;box-shadow:0 2px 5px rgba(192,57,43,0.12);}
+.proj-text{font-size:11px;color:#444;text-align:left;line-height:1.4;}
+.proj-text strong{display:block;font-size:12px;color:var(--gd);font-family:var(--print);font-weight:700;margin-bottom:1px;}
+.proj-text a{color:var(--g);text-decoration:none;border-bottom:1px solid #9FE1CB;transition:color .15s;}
+.proj-text a:hover{color:var(--gd);}
 
-.proj-badge{display:flex;align-items:center;gap:10px;background:#fff;border-radius:10px;padding:10px 12px;margin-top:10px;border:1px solid #9FE1CB;}
-.proj-badge-icon{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;font-family:var(--hand);}
-.proj-badge-icon-eu{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#003399,#0055cc);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
-.proj-badge-icon-ncn{width:32px;height:32px;border-radius:8px;background:#fff;border:1.5px solid #C0392B;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:11px;font-weight:700;color:#C0392B;flex-shrink:0;}
-.proj-text{font-size:11px;color:var(--gd);text-align:left;}
-.proj-text strong{display:block;font-size:12px;color:var(--gd);font-family:var(--print);}
+/* linkedin */
+.linkedin-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:11px;
+  font-size:11.5px;color:#fff;font-family:var(--print);font-weight:600;
+  background:linear-gradient(135deg,#1a5c99,#1e6eb5);
+  padding:7px 14px;border-radius:18px;
+  box-shadow:0 2px 7px rgba(26,92,153,0.22);
+  transition:box-shadow 0.16s,transform 0.16s;
+}
+.linkedin-link:hover{box-shadow:0 4px 12px rgba(26,92,153,0.32);transform:translateY(-1px);}
+.linkedin-link svg{fill:#fff;}
 
-
-
-
-.linkedin-link{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:var(--nb);font-family:var(--print);background:var(--nl);padding:5px 12px;border-radius:12px;}
 .about-text p{color:#444;font-size:15px;line-height:1.8;margin-bottom:12px;}
 
 /* ── WORKSHOPS ── */
@@ -232,7 +298,7 @@ h2{font-family:var(--hand);font-size:clamp(24px,3.8vw,38px);font-weight:700;line
 .newsletter{background:linear-gradient(135deg,#032b1f 0%,var(--gd) 40%,var(--g) 100%);border-radius:20px;padding:44px 36px;text-align:center;box-shadow:0 4px 32px rgba(8,80,65,0.18);}
 
 /* ── About card: warmer feel ── */
-.about-card{background:linear-gradient(160deg,#E8F8F2 0%,#D6F0E8 100%);border-radius:16px;padding:24px 20px;text-align:center;position:relative;border:2px solid var(--nb);box-shadow:0 2px 16px rgba(26,92,153,0.07);}
+
 
 /* ── Proof cards: softer ── */
 .proof-card{background:#fff;border-radius:12px;padding:16px 18px;border:2px solid #e4ecf8;border-left:4px solid var(--g);box-shadow:0 1px 8px rgba(0,0,0,0.04);}
@@ -298,6 +364,10 @@ footer{background:#04342C;padding:36px 5% 20px;}
 .sketch-wiggle:hover{animation:wiggle 0.35s ease-in-out;}
 
 /* ── RESPONSIVE ── */
+/* ── WARSZTATY+ROZWÓJ grid ── */
+.wr-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+@media(max-width:700px){.wr-grid{grid-template-columns:1fr;}}
+
 @media(max-width:480px){
   .hero{padding:48px 4% 110px;}
   .hero-bus-wrap{width:90px;bottom:10px;right:2%;}
@@ -424,32 +494,38 @@ footer{background:#04342C;padding:36px 5% 20px;}
         </div>
         <div class="about-name">dr Olha Shulika</div>
         <div class="about-role">Ekspertka ds. mobilności miejskiej</div>
+        <div class="tag-row" style="justify-content:center;">
           <span class="tag">10+ lat doświadczenia badawczego</span>
-                <div class="uni-links">
+        </div>
+
+        <div class="about-card-label">Afiliacje naukowe</div>
+        <div class="uni-links">
           <a href="https://www.uj.edu.pl/" target="_blank" class="uni-link">
             <span class="uni-link-dot" style="background:#085041;"></span>
             <span class="uni-link-name">Uniwersytet Jagielloński</span>
-            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;"><rect width="22" height="7" fill="#fff"/><rect y="7" width="22" height="7" fill="#DC143C"/></svg> </span>
+            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;display:block;"><rect width="22" height="7" fill="#fff"/><rect y="7" width="22" height="7" fill="#DC143C"/></svg></span>
           </a>
           <a href="https://www.pk.edu.pl/" target="_blank" class="uni-link">
             <span class="uni-link-dot" style="background:#1a5c99;"></span>
             <span class="uni-link-name">Politechnika Krakowska</span>
-            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;"><rect width="22" height="7" fill="#fff"/><rect y="7" width="22" height="7" fill="#DC143C"/></svg> </span>
+            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;display:block;"><rect width="22" height="7" fill="#fff"/><rect y="7" width="22" height="7" fill="#DC143C"/></svg></span>
           </a>
           <a href="https://www.uzhnu.edu.ua/" target="_blank" class="uni-link">
             <span class="uni-link-dot" style="background:#DAA520;"></span>
             <span class="uni-link-name">Uniwersytet Narodowy w Użhorodzie</span>
-            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;"><rect width="22" height="7" fill="#005BBB"/><rect y="7" width="22" height="7" fill="#FFD500"/></svg> </span>
+            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;display:block;"><rect width="22" height="7" fill="#005BBB"/><rect y="7" width="22" height="7" fill="#FFD500"/></svg></span>
           </a>
           <a href="https://www.khadi.kharkov.ua/" target="_blank" class="uni-link">
             <span class="uni-link-dot" style="background:#C0392B;"></span>
             <span class="uni-link-name" style="font-size:12px;">Nar. Samochodowo–Drogowy Uniw. w Charkowie</span>
-            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;"><rect width="22" height="7" fill="#005BBB"/><rect y="7" width="22" height="7" fill="#FFD500"/></svg> </span>
+            <span class="uni-link-country"><svg width="22" height="14" viewBox="0 0 22 14" style="border-radius:3px;outline:1px solid #ccc;display:block;"><rect width="22" height="7" fill="#005BBB"/><rect y="7" width="22" height="7" fill="#FFD500"/></svg></span>
           </a>
         </div>
+
+        <div class="about-card-label" style="margin-top:12px;">Projekty badawcze</div>
         <div class="proj-badge">
           <div class="proj-badge-icon-eu">
-            <svg width="32" height="32" viewBox="0 0 32 32">
+            <svg width="30" height="30" viewBox="0 0 32 32">
               <rect width="32" height="32" rx="8" fill="#003399"/>
               <g fill="#FFD700" transform="translate(16,16)">
                 <polygon points="0,-2 0.5,-0.7 1.9,-0.6 0.9,0.3 1.2,1.7 0,0.9 -1.2,1.7 -0.9,0.3 -1.9,-0.6 -0.5,-0.7" transform="rotate(0)   translate(0,-9)"/>
@@ -469,19 +545,19 @@ footer{background:#04342C;padding:36px 5% 20px;}
           </div>
           <div class="proj-text">
             <strong>Horizon Europe · SUM</strong>
-            <a href="https://sum-project.eu" target="_blank" style="color:var(--gd);text-decoration:underline;">Seamless shared urban mobility</a>
+            <a href="https://sum-project.eu" target="_blank">Seamless shared urban mobility</a>
           </div>
         </div>
         <div class="proj-badge">
           <div class="proj-badge-icon-ncn">NCN</div>
           <div class="proj-text">
             <strong>Narodowe Centrum Nauki · OPUS</strong>
-            <a href="https://www.rafalkucharskilab.pl/research/g_1_OPUS/" target="_blank" style="color:var(--gd);text-decoration:underline;">PostCorona Shared Mobility</a>
+            <a href="https://www.rafalkucharskilab.pl/research/g_1_OPUS/" target="_blank">PostCorona Shared Mobility</a>
           </div>
         </div>
 
         <a href="https://www.linkedin.com/in/olha-shulika/" target="_blank" class="linkedin-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#1a5c99"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn / Olha Shulika
         </a>
       </div>
@@ -690,6 +766,147 @@ footer{background:#04342C;padding:36px 5% 20px;}
     <div id="blogShowAllBtn" style="text-align:center;margin-top:20px;">
       <button onclick="openBlogAll()" style="display:inline-block;border:2px solid var(--nb);color:var(--nb);padding:10px 24px;border-radius:20px;font-size:13px;font-family:var(--print);background:#fff;cursor:pointer;">Wszystkie wpisy →</button>
     </div>
+  </div>
+</section>
+
+<!-- WARSZTATY W TERENIE + MÓJ ROZWÓJ — dwie kolumny -->
+<section id="warsztaty-rozwoj" style="background:linear-gradient(180deg,#f0faf6 0%,#f4f8ff 100%);padding:44px 5%;">
+  <div class="section-inner">
+    <div class="wr-grid">
+
+      <!-- ── LEWA: Warsztaty w terenie ── -->
+      <div class="wr-col">
+        <span class="section-tag green">Warsztaty w terenie</span>
+        <h2 style="margin-bottom:6px;">W działaniu</h2>
+        <p class="lead" style="font-size:13.5px;margin-bottom:16px;">Zdjęcia i relacje z zajęć, które już się odbyły. Każde spotkanie to nowe pytania od dzieci – i najlepsza weryfikacja programu.</p>
+
+        <div style="display:flex;flex-direction:column;gap:14px;" id="warsztatyPreview">
+
+          <div class="post-card" onclick="openWarsz(0)" style="cursor:pointer;">
+            <div style="height:140px;overflow:hidden;">
+              <img src="foto1.jpg" alt="Warsztaty Płast Kraków — dzieci malują plakat Nasze miasto" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .3s;">
+            </div>
+            <div class="post-body" style="padding:12px 14px;">
+              <div class="post-tag" style="color:#0F6E56;">Warsztat · 3–5 lat · Kraków</div>
+              <div class="post-title" style="font-size:15px;">Czym jeździmy po mieście? — Płast Kraków</div>
+              <div class="post-excerpt" style="font-size:12.5px;">Przedszkolaki z gniazda Ptaszków odkryły różnicę między autobusem a tramwajem i razem namalowały plakat „Nasze miasto".</div>
+              <div class="post-meta" style="display:flex;justify-content:space-between;align-items:center;margin-top:7px;">
+                <span>Kwieczień 2026 · Kraków</span>
+                <a href="https://www.facebook.com/PlastKRK" target="_blank" onclick="event.stopPropagation()" style="font-size:10px;color:var(--nb);font-family:var(--print);background:var(--nl);padding:2px 8px;border-radius:10px;text-decoration:none;">Płast KRK →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-card" onclick="openWarsz(1)" style="cursor:pointer;">
+            <div style="height:140px;overflow:hidden;">
+              <img src="foto2.jpg" alt="Warsztaty urbanistyczne Piknik Sąsiedzki Dębniki" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .3s;">
+            </div>
+            <div class="post-body" style="padding:12px 14px;">
+              <div class="post-tag" style="color:#1a5c99;">Warsztat · 3–14 lat · Dębniki</div>
+              <div class="post-title" style="font-size:15px;">Jak dotarłeś/aś na Rozdroże? — Piknik Sąsiedzki</div>
+              <div class="post-excerpt" style="font-size:12.5px;">Wspólna mapa Dębnik, naklejki z trasami, liczenie pasażerów tramwaju. Kto wygrywa ulicę?</div>
+              <div class="post-meta" style="display:flex;justify-content:space-between;align-items:center;margin-top:7px;">
+                <span>31 maja 2026 · Dębniki</span>
+                <a href="https://www.facebook.com/events/2597742257349955" target="_blank" onclick="event.stopPropagation()" style="font-size:10px;color:var(--nb);font-family:var(--print);background:var(--nl);padding:2px 8px;border-radius:10px;text-decoration:none;"> Fundacja Tkanka - dawniej Kocham Dębniki →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:16px;" id="warsztatyShowAllBtn">
+          <button onclick="openWarszAll()" style="border:2px solid var(--g);color:var(--g);padding:8px 22px;border-radius:20px;font-size:13px;font-family:var(--print);background:#fff;cursor:pointer;">Wszystkie warsztaty →</button>
+        </div>
+        <div id="warsztatyAll" style="display:none;margin-top:14px;">
+          <button class="blog-back" onclick="closeWarszAll()">← Wróć</button>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="post-card" onclick="openWarsz(0)" style="cursor:pointer;">
+              <div style="height:110px;overflow:hidden;"><img src="foto1.jpg" alt="Płast" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+              <div class="post-body" style="padding:10px 12px;">
+                <div class="post-tag" style="color:#0F6E56;">Warsztat · 3–5 lat</div>
+                <div class="post-title" style="font-size:14px;">Czym jeździmy po mieście? — Płast</div>
+                <div class="post-meta"> Kwieczień 2026 · Kraków</div>
+              </div>
+            </div>
+            <div class="post-card" onclick="openWarsz(1)" style="cursor:pointer;">
+              <div style="height:110px;overflow:hidden;"><img src="foto2.jpg" alt="Piknik" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+              <div class="post-body" style="padding:10px 12px;">
+                <div class="post-tag" style="color:#1a5c99;">Warsztat · 3–14 lat</div>
+                <div class="post-title" style="font-size:14px;">Jak dotarłeś/aś na Rozdroże?</div>
+                <div class="post-meta">31 maja 2026 · Dębniki</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /lewa -->
+
+      <!-- ── PRAWA: Mój rozwój ── -->
+      <div class="wr-col">
+        <span class="section-tag blue">Mój rozwój</span>
+        <h2 style="margin-bottom:6px;">Uczę się, żeby uczyć lepiej</h2>
+        <p class="lead" style="font-size:13.5px;margin-bottom:16px;">Budowanie startupu wymaga kompetencji daleko poza transportem. Oto szkolenia, które wzmocniły Urbanek.</p>
+
+        <div style="display:flex;flex-direction:column;gap:14px;" id="rozwojPreview">
+
+          <div class="post-card" onclick="openRozwoj(0)" style="cursor:pointer;">
+            <div style="height:140px;overflow:hidden;">
+              <img src="foto3.jpg" alt="Biznes Startup Toolkit — Sebastian Pieczyrak Think Pen" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .3s;">
+            </div>
+            <div class="post-body" style="padding:12px 14px;">
+              <div class="post-tag" style="color:#4527A0;">Startup · Biznes</div>
+              <div class="post-title" style="font-size:15px;">Biznes Startup Toolkit — Think Pen</div>
+              <div class="post-excerpt" style="font-size:12.5px;">Narzędzia skutecznej kreacji i wdrożenia pomysłu biznesowego. Szkolenie, które nadało Urbanek konkretną strukturę.</div>
+              <div class="post-meta" style="display:flex;justify-content:space-between;align-items:center;margin-top:7px;">
+                <span>2026 · Sebastian Pieczyrak</span>
+                <a href="https://www.thinkpen.pl/" target="_blank" onclick="event.stopPropagation()" style="font-size:10px;color:#4527A0;font-family:var(--print);background:#eee8ff;padding:2px 8px;border-radius:10px;text-decoration:none;">ThinkPen →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-card" onclick="openRozwoj(1)" style="cursor:pointer;">
+            <div style="height:140px;overflow:hidden;">
+              <img src="foto4.jpg" alt="Szkolenie cyfrowe Net On Wheels Wojtek Maj" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .3s;">
+            </div>
+            <div class="post-body" style="padding:12px 14px;">
+              <div class="post-tag" style="color:#1a5c99;">Kompetencje cyfrowe</div>
+              <div class="post-title" style="font-size:15px;">Obsługa narzędzi cyfrowych dla przedsiębiorcy</div>
+              <div class="post-excerpt" style="font-size:12.5px;">Fakturowanie, Google Tasks, Canva, cyberbezpieczeństwo — praktyczne szkolenie Fundacji Net On Wheels.</div>
+              <div class="post-meta" style="display:flex;justify-content:space-between;align-items:center;margin-top:7px;">
+                <span>2026 · Wojtek Maj</span>
+                <a href="https://www.facebook.com/people/Fundacja-Net-On-Wheels/61577828080873/" target="_blank" onclick="event.stopPropagation()" style="font-size:10px;color:var(--nb);font-family:var(--print);background:var(--nl);padding:2px 8px;border-radius:10px;text-decoration:none;">Net On Wheels →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:16px;" id="rozwojShowAllBtn">
+          <button onclick="openRozwojAll()" style="border:2px solid var(--nb);color:var(--nb);padding:8px 22px;border-radius:20px;font-size:13px;font-family:var(--print);background:#fff;cursor:pointer;">Wszystkie wpisy →</button>
+        </div>
+        <div id="rozwojAll" style="display:none;margin-top:14px;">
+          <button class="blog-back" onclick="closeRozwojAll()">← Wróć</button>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="post-card" onclick="openRozwoj(0)" style="cursor:pointer;">
+              <div style="height:110px;overflow:hidden;"><img src="foto3.jpg" alt="Startup Toolkit" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+              <div class="post-body" style="padding:10px 12px;">
+                <div class="post-tag" style="color:#4527A0;">Startup · Biznes</div>
+                <div class="post-title" style="font-size:14px;">Biznes Startup Toolkit</div>
+                <div class="post-meta">Sebastian Pieczyrak · Think Pen</div>
+              </div>
+            </div>
+            <div class="post-card" onclick="openRozwoj(1)" style="cursor:pointer;">
+              <div style="height:110px;overflow:hidden;"><img src="foto4.jpg" alt="Net On Wheels" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+              <div class="post-body" style="padding:10px 12px;">
+                <div class="post-tag" style="color:#1a5c99;">Kompetencje cyfrowe</div>
+                <div class="post-title" style="font-size:14px;">Obsługa narzędzi cyfrowych</div>
+                <div class="post-meta">Wojtek Maj · Net On Wheels</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /prawa -->
+
+    </div><!-- /wr-grid -->
   </div>
 </section>
 
@@ -993,6 +1210,54 @@ function toggleOpinie(){
 
 /* ── ESC TO CLOSE ── */
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeWs();closePost();}});
+
+/* ── WARSZTATY ── */
+const WARSZ=[
+  {title:"Czym jeździmy po mieście? — Płast Kraków",tag:"Warsztat · 3–5 lat · Kraków",date:"2025 · Kraków",
+   content:`<p>W gnieździe Ptaszków (Płast Kraków) dzieci w wieku 3–5 lat po raz pierwszy zmierzyły się z pytaniem: czym właściwie jeździmy po mieście? Przez zabawę ruchową odkryły różnicę między samochodem, autobusem i tramwajem — i razem namalowały wspólny plakat <em>„Nasze miasto"</em>.</p><p>Jeden autobus to jak 33 samochody — to zdanie, które zostaje w głowie. I w rysunkach.</p><div class="source"><a href="https://www.facebook.com/PlastKRK" target="_blank">Płast Kraków — Facebook →</a></div>`},
+  {title:"Jak dotarłeś/aś na Rozdroże? — Piknik Sąsiedzki Dębniki",tag:"Warsztat · 3–14 lat · Dębniki",date:"31 maja 2026 · Kraków | Fundacja Tkanka - dawniej Kocham Dębniki",
+   content:`<p>Podczas Międzykulturowego Pikniku Sąsiedzkiego <em>„Między czereśnią a orzechem"</em> przeprowadziliśmy warsztaty urbanistyczne dla dzieci w różnym wieku.</p><p>Uczestnicy zbierali dane o tym, jak dotarli na miejsce, budowali wspólny wykres, układali trasy na prawdziwej mapie Dębnik z naklejkami i szukali najbliższego przystanku tramwajowego — 3 minuty stąd pieszo. Sprawdzaliśmy, jak daleko sięga Strefa Czystego Transportu, i liczyliśmy: jeden tramwaj zabiera tyle osób, ile przyjeżdża tu dziś samochodami. <strong>Kto wygrywa ulicę?</strong></p><div class="source"><a href="https://www.facebook.com/events/2597742257349955" target="_blank">Wydarzenie na Facebooku →</a></div>`}
+];
+function openWarsz(i){
+  const w=WARSZ[i];
+  document.getElementById('postContent').innerHTML=`<div class="post-tag" style="color:#0F6E56;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:var(--print);">${w.tag}</div><h2>${w.title}</h2><p class="pf-meta">${w.date}</p>${w.content}`;
+  document.getElementById('postOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function openWarszAll(){
+  document.getElementById('warsztatyAll').style.display='block';
+  document.getElementById('warsztatyShowAllBtn').style.display='none';
+  document.getElementById('warsztatyPreview').style.display='none';
+}
+function closeWarszAll(){
+  document.getElementById('warsztatyAll').style.display='none';
+  document.getElementById('warsztatyShowAllBtn').style.display='block';
+  document.getElementById('warsztatyPreview').style.display='flex';
+}
+
+/* ── ROZWÓJ ── */
+const ROZW=[
+  {title:"Biznes Startup Toolkit — Think Pen",tag:"Startup · Biznes · Kraków",date:"2026 · Sebastian Pieczyrak | Think Pen",
+   content:`<p>Szkolenie <em>„Narzędzia skutecznej kreacji i wdrożenia pomysłu biznesowego"</em> prowadzone przez Sebastiana Pieczyrak z Think Pen to był przełomowy moment dla Urbanek.</p><p>Praca nad modelem biznesowym, propozycją wartości i strategią wdrożenia — wszystko to nadało projektowi konkretną strukturę. To tu Urbanek przestał być pomysłem, a stał się planem.</p><div class="source"><a href="https://www.thinkpen.pl/" target="_blank">thinkpen.pl →</a></div>`},
+  {title:"Obsługa narzędzi cyfrowych dla przedsiębiorcy",tag:"Kompetencje cyfrowe · Fundacja Net On Wheels",date:"2026 · Wojtek Maj | Net On Wheels",
+   content:`<p>Praktyczne szkolenie Fundacji Net On Wheels prowadzone przez Wojtka Maja objęło:</p><ul><li>Faktury i podstawy księgowości</li><li>Google Tasks — zarządzanie zadaniami i prostymi projektami</li><li>Tworzenie materiałów graficznych w Canvie</li><li>Podstawy cyberbezpieczeństwa</li></ul><p>Kompetencje, które każda prowadząca działalność powinna mieć — i które realnie usprawniły codzienną pracę nad Urbanek.</p><div class="source"><a href="https://www.facebook.com/people/Fundacja-Net-On-Wheels/61577828080873/" target="_blank">Fundacja Net On Wheels →</a></div>`}
+];
+function openRozwoj(i){
+  const r=ROZW[i];
+  document.getElementById('postContent').innerHTML=`<div class="post-tag" style="color:#4527A0;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:var(--print);">${r.tag}</div><h2>${r.title}</h2><p class="pf-meta">${r.date}</p>${r.content}`;
+  document.getElementById('postOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function openRozwojAll(){
+  document.getElementById('rozwojAll').style.display='block';
+  document.getElementById('rozwojShowAllBtn').style.display='none';
+  document.getElementById('rozwojPreview').style.display='none';
+}
+function closeRozwojAll(){
+  document.getElementById('rozwojAll').style.display='none';
+  document.getElementById('rozwojShowAllBtn').style.display='block';
+  document.getElementById('rozwojPreview').style.display='flex';
+}
 </script>
 </body>
 </html>
